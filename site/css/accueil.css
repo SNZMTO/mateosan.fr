@@ -1,0 +1,90 @@
+/* L'accueil : l'en-tête des trente secondes, les cartes de ce qui est posé sur l'établi (une par objet, à sa teinte, toute la
+   carte menant à sa page), et le paragraphe en anglais. */
+
+.entete {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 0 8px;
+  text-align: center;
+}
+
+.entete h1 {
+  margin: 6px 0 12px;
+  font-size: clamp(34px, 6vw, 52px);
+}
+
+.entete .contact {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.surtitre {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.etabli > h2,
+.etabli > p {
+  text-align: center;
+}
+
+.objets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.objet {
+  position: relative;
+  padding: 18px 20px 20px;
+  border-top: 8px solid var(--teinte);
+}
+
+.objet:has(a:focus-visible) {
+  outline: 3px solid var(--texte-lien);
+  outline-offset: 3px;
+}
+
+.objet h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.objet h3 a {
+  color: var(--texte);
+  text-decoration: none;
+}
+
+.objet h3 a::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.objet h3 a:focus-visible {
+  outline: none;
+}
+
+.objet p {
+  margin: 6px 0 0;
+}
+
+.en-anglais {
+  max-width: 760px;
+  margin: 32px auto 0;
+  padding: 20px 24px;
+}
+
+.en-anglais h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.en-anglais p {
+  margin: 0;
+}

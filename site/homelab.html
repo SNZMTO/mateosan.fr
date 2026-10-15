@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le homelab · Mateo Sanchez</title>
+<meta name="description" content="Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site et Honear.">
+<link rel="canonical" href="https://mateosan.fr/homelab">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="mateosan.fr">
+<meta property="og:title" content="Le homelab · Mateo Sanchez">
+<meta property="og:description" content="Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site et Honear.">
+<meta property="og:url" content="https://mateosan.fr/homelab">
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/polices.css">
+<link rel="stylesheet" href="/css/palette.css">
+<link rel="stylesheet" href="/css/page.css">
+<link rel="stylesheet" href="/css/accueil.css">
+<link rel="stylesheet" href="/css/fiches.css">
+</head>
+<body>
+<nav class="retour"><a href="/"><span aria-hidden="true">←</span> Retour à l'établi</a></nav>
+<main class="fiche teinte-orange">
+  <header>
+    <p class="etat">En ligne</p>
+    <h1>Le homelab</h1>
+    <p class="accroche">Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site et Honear.</p>
+    <ul class="pastilles">
+      <li>Debian</li>
+      <li>Docker</li>
+      <li>Caddy</li>
+      <li>Déploiement continu</li>
+    </ul>
+  </header>
+  <p>Un VPS chez OVH, sous Debian, scanné par des robots dès sa mise en ligne. Chaque protection répond à ce que montrent ses journaux : SSH par clé seulement et sans root, un pare-feu qui refuse tout par défaut, fail2ban et ses bannissements progressifs, les mises à jour de sécurité automatiques.</p>
+  <p>Les sites tournent dans des conteneurs Docker sans droits, derrière un frontal Caddy qui tient le HTTPS. Ce site se met en ligne seul : le serveur tire chaque nouveau commit de GitHub, le pose à côté de la version en ligne et bascule d'un coup, sans accès entrant ni secret sur la machine.</p>
+  <p>Chaque étape est notée dans le dépôt, avec ses commandes, ses pièges et ses raisons.</p>
+  <h2>Pour aller plus loin</h2>
+  <ul class="liens">
+    <li><a class="bouton" href="https://github.com/SNZMTO/homelab">Le journal sur GitHub</a></li>
+  </ul>
+</main>
+<footer class="pied">
+  <p><a href="mailto:contact@mateosan.fr">contact@mateosan.fr</a></p>
+  <nav aria-label="Informations légales">
+    <ul>
+      <li><a href="/mentions-legales">Mentions légales</a></li>
+      <li><a href="/confidentialite">Confidentialité</a></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+// La forme du contenu de mateosan.fr : ce que dit chaque fichier de contenu/, vérifié par npm run types. Une teinte est le nom
+// d'une classe .teinte-<nom> de site/css/palette.css (tests/contenu.test.js le vérifie).
+
+/** Un lien vers une autre page, sur le site ou ailleurs. */
+export interface Lien {
+  readonly texte: string;
+  /** Une adresse en https://, ou mailto:. */
+  readonly adresse: string;
+}
+
+/** Un titre et ses paragraphes. */
+export interface Section {
+  readonly titre: string;
+  readonly paragraphes: readonly string[];
+}
+
+/** Le site lui-même : son adresse, sa langue. */
+export interface Site {
+  /** Le nom court, à la fin des titres d'onglet. */
+  readonly nom: string;
+  /** L'adresse publique, sans barre finale. */
+  readonly adresse: string;
+  readonly langue: string;
+  /** La langue pour OpenGraph (fr_FR). */
+  readonly locale: string;
+}
+
+/** Les libellés de l'interface, communs à toutes les pages. */
+export interface Interface {
+  /** Entre le titre d'une page et le nom du site, dans l'onglet. */
+  readonly separateur: string;
+  readonly retour: string;
+  readonly ecrire: string;
+  readonly etabli: { readonly titre: string; readonly intro: string };
+  readonly liensDuProjet: string;
+  readonly joindre: string;
+  readonly navigationLegale: string;
+  readonly introuvable: { readonly titre: string; readonly description: string };
+}
+
+/** Mateo : l'en-tête de l'accueil et la page « qui je suis ». */
+export interface Personne {
+  readonly nom: string;
+  readonly surtitre: string;
+  /** La phrase des trente secondes, sans ponctuation finale. */
+  readonly accroche: string;
+  /** Quand l'alternance commence, avec sa préposition (« à partir de septembre 2027 ») ; absent, la phrase s'en passe. */
+  readonly debut?: string;
+  /** Sa durée, avec sa préposition (« pour deux ans »). */
+  readonly duree?: string;
+  /** Où (« à Marseille ou à distance »). */
+  readonly zone?: string;
+  /** Le rythme de l'alternance, qui clôt la phrase. */
+  readonly rythme: string;
+  /** Une phrase qui dit ce que montrent les projets. */
+  readonly preuve: string;
+  readonly enAnglais: Section;
+  readonly teinte: string;
+  readonly quiJeSuis: {
+    readonly titre: string;
+    readonly accroche: string;
+    readonly sections: readonly Section[];
+  };
+  readonly contact: {
+    /** La seule adresse e-mail du site. */
+    readonly adresse: string;
+    readonly liens: readonly Lien[];
+  };
+}
+
+/** Un projet posé sur l'établi, et sa page. */
+export interface Projet {
+  /** Son adresse sur le site (/honear) : des minuscules, des chiffres et des tirets. */
+  readonly id: string;
+  readonly titre: string;
+  /** Une phrase : la carte de l'accueil, la description de sa page et de son partage. */
+  readonly accroche: string;
+  /** En ligne, prototype, code privé… */
+  readonly etat: string;
+  readonly teinte: string;
+  readonly resume: readonly string[];
+  readonly pastilles: readonly string[];
+  readonly liens: readonly Lien[];
+}
+
+/** Une page légale : son corps est contenu/legal/<id>.html. */
+export interface PageLegale {
+  readonly id: string;
+  readonly titre: string;
+  readonly description: string;
+}

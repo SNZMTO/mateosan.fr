@@ -1,0 +1,111 @@
+/* Les pages d'un objet de l'établi (un projet, « qui je suis ») et les pages légales : une colonne de lecture, le retour à
+   l'accueil en haut, le pied de page commun à tout le site. */
+
+.retour {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 0 0;
+}
+
+.retour a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 8px 18px 8px 14px;
+  border-radius: 999px;
+  background: var(--fond-inverse);
+  color: var(--texte-inverse);
+  font: 500 15px/1.2 'Fredoka', 'Nunito', sans-serif;
+  text-decoration: none;
+}
+
+.retour a:hover {
+  background: var(--fond-inverse-survol);
+  color: var(--texte-inverse);
+}
+
+.fiche,
+.legal {
+  max-width: 760px;
+  margin: 20px auto 0;
+}
+
+.fiche {
+  padding: 28px clamp(18px, 4vw, 36px) 32px;
+  border-top: 10px solid var(--teinte);
+}
+
+.fiche header {
+  margin-bottom: 20px;
+}
+
+.fiche h1,
+.legal h1 {
+  margin: 4px 0 8px;
+  font-size: clamp(32px, 6vw, 44px);
+}
+
+.fiche h2 {
+  margin: 28px 0 8px;
+  font-size: 22px;
+}
+
+.fiche p {
+  margin: 0 0 12px;
+}
+
+.fiche .liens {
+  margin-top: 12px;
+}
+
+.legal .date {
+  margin: 0 0 24px;
+  color: var(--texte-doux);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.legal section {
+  margin: 0 0 16px;
+  padding: 20px 22px;
+}
+
+.legal h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.legal p {
+  margin: 0 0 10px;
+}
+
+.legal p:last-child {
+  margin-bottom: 0;
+}
+
+/* Le pied de page : l'adresse de contact et les pages légales. */
+.pied {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 0 calc(32px + env(safe-area-inset-bottom));
+  color: var(--texte-doux);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pied p {
+  margin: 0 0 6px;
+}
+
+.pied ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+}
+
+.pied a {
+  color: inherit;
+}

@@ -1,0 +1,34 @@
+# Le serveur de mateosan.fr, dans son conteneur : il sert la version en ligne du site (/srv/publie/actuel, que publier.sh fait
+# pointer sur le dernier commit), sans HTTPS ni journal des visites. Le frontal du VPS (dépôt « vps ») tient le HTTPS, la
+# compression et les en-têtes de sécurité communs ; ici, la politique de sécurité du contenu (CSP), propre au site. Le banc
+# d'essai (banc/serveur.js) lit la même.
+{
+	admin off
+	auto_https off
+	persist_config off
+	# Rien que les erreurs : aucune visite n'est écrite (voir la page « Confidentialité »).
+	log {
+		level ERROR
+	}
+}
+
+:8080 {
+	root * /srv/publie/actuel
+
+	# Tout vient de mateosan.fr, et rien ne s'écrit dans les pages : ni style, ni script.
+	header Content-Security-Policy "default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+
+	# Les dépendances ne changent jamais à une même adresse (la version est dans le nom) ; le reste se revérifie à chaque fois.
+	@dependances path /dependances/*
+	@pages not path /dependances/*
+	header @dependances Cache-Control "public, max-age=31536000, immutable"
+	header @pages Cache-Control "no-cache"
+
+	try_files {path} {path}.html
+	file_server
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}

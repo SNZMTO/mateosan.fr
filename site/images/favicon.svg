@@ -1,0 +1,9 @@
+<!-- La favicon de mateosan.fr : un petit établi, ses deux objets posés dessus. Ses couleurs sont celles de site/css/palette.css. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#4A3521"/>
+  <rect x="17" y="17" width="12" height="15" rx="2.5" fill="#3E8E9C"/>
+  <rect x="34" y="22" width="14" height="10" rx="5" fill="#E2725B"/>
+  <rect x="9" y="32" width="46" height="7" rx="2.5" fill="#D9A441"/>
+  <rect x="14" y="39" width="6" height="15" rx="1.5" fill="#D9A441"/>
+  <rect x="44" y="39" width="6" height="15" rx="1.5" fill="#D9A441"/>
+</svg>
