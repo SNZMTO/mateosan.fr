@@ -1,0 +1,136 @@
+/* L'allure commune des pages, lisibles sans la scène : le texte, les liens, les boutons, les cartes, les pastilles. Les couleurs
+   viennent de palette.css, les polices de polices.css ; l'accueil (accueil.css) et les autres pages (fiches.css) s'y ajoutent. */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--fond-page);
+  color: var(--texte);
+  font: 400 17px/1.65 'Nunito', 'Helvetica Neue', sans-serif;
+  overflow-wrap: break-word;
+}
+
+body {
+  margin: 0;
+  padding: 0 16px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+a {
+  color: var(--texte-lien);
+}
+
+a:hover {
+  color: var(--texte-lien-survol);
+}
+
+:focus-visible {
+  outline: 3px solid var(--texte-lien);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--texte-inverse);
+}
+
+/* Les boutons : une pilule foncée, ou claire à côté d'une foncée. */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1.5px solid var(--fond-inverse);
+  border-radius: 999px;
+  background: var(--fond-inverse);
+  color: var(--texte-inverse);
+  font: 500 16px/1.2 'Fredoka', 'Nunito', sans-serif;
+  text-decoration: none;
+}
+
+.bouton:hover {
+  background: var(--fond-inverse-survol);
+  color: var(--texte-inverse);
+}
+
+.bouton-clair {
+  background: var(--fond-carte);
+  color: var(--texte);
+}
+
+.bouton-clair:hover {
+  background: var(--fond-page);
+  color: var(--texte);
+}
+
+.contact,
+.liens,
+.pastilles,
+.objets,
+.pied ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact,
+.liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* La colonne des pages, et les cartes. */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 0 40px;
+}
+
+.objet,
+.fiche,
+.legal section,
+.en-anglais {
+  border: 1.5px solid var(--bord);
+  border-radius: 18px;
+  background: var(--fond-carte);
+}
+
+.accroche {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.etat {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pastilles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.pastilles li {
+  padding: 2px 10px;
+  border: 1.5px solid var(--teinte);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}

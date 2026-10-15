@@ -1,0 +1,34 @@
+/* La palette de mateosan.fr, celle de l'établi : la seule source des couleurs du site. Ailleurs, une couleur se lit ici, par son
+   nom (var(--…)) ; les tests refusent toute couleur écrite hors de ce fichier et des images SVG du site.
+
+   Les noms disent l'usage. Chaque --texte-… tient 4,5:1 sur chaque --fond-…, et --texte-inverse sur chaque --fond-inverse… :
+   tests/pages.test.js le calcule. */
+
+:root {
+  /* Les fonds, sous du texte. */
+  --fond-page: #F2EAD9;
+  --fond-carte: #FDF4E0;
+
+  /* Les textes. */
+  --texte: #4A3521;
+  --texte-doux: #6E5137;
+  --texte-lien: #2F6F7A;
+  --texte-lien-survol: #285E68;
+
+  /* Un texte clair sur un fond foncé : les boutons, la sélection. */
+  --fond-inverse: #4A3521;
+  --fond-inverse-survol: #5D4633;
+  --texte-inverse: #F7EDDC;
+
+  /* Les traits et les marques, jamais sous du texte. */
+  --bord: #E4D4B4;
+  --selection: #E2725B;
+}
+
+/* Les teintes des objets de l'établi : le contenu en nomme une par objet (teinte: 'corail'), qui devient --teinte. */
+.teinte-corail { --teinte: #E2725B; }
+.teinte-canard { --teinte: #3E8E9C; }
+.teinte-sauge { --teinte: #7F9C6B; }
+.teinte-orange { --teinte: #E8703A; }
+.teinte-moutarde { --teinte: #D9A441; }
+.teinte-noyer { --teinte: #8C6A4F; }

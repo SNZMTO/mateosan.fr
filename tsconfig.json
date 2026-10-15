@@ -1,0 +1,22 @@
+{
+  // Les types du contenu, des outils, des tests et du banc : du JavaScript vérifié par ses commentaires JSDoc, rien n'est
+  // compilé (npm run types). Le DOM sert au banc, dont une partie du code tourne dans la page.
+  "compilerOptions": {
+    "target": "es2023",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": ["es2023", "dom"],
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["contenu", "outils", "tests", "banc"]
+}
