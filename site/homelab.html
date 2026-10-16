@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le homelab · Mateo Sanchez</title>
-<meta name="description" content="Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site et Honear.">
+<meta name="description" content="Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site, Honear et son MCP.">
 <link rel="canonical" href="https://mateosan.fr/homelab">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="mateosan.fr">
 <meta property="og:title" content="Le homelab · Mateo Sanchez">
-<meta property="og:description" content="Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site et Honear.">
+<meta property="og:description" content="Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site, Honear et son MCP.">
 <meta property="og:url" content="https://mateosan.fr/homelab">
 <meta property="og:image" content="https://mateosan.fr/images/partage.png">
 <meta property="og:image:width" content="1200">
@@ -33,7 +33,7 @@
   <header>
     <p class="etat">En ligne</p>
     <h1>Le homelab</h1>
-    <p class="accroche">Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site et Honear.</p>
+    <p class="accroche">Un vrai serveur exposé à internet, durci pas à pas, qui héberge ce site, Honear et son MCP.</p>
     <ul class="pastilles">
       <li>Debian</li>
       <li>Docker</li>
@@ -42,7 +42,7 @@
     </ul>
   </header>
   <p>Un VPS chez OVH, sous Debian, scanné par des robots dès sa mise en ligne. Chaque protection répond à ce que montrent ses journaux : SSH par clé seulement et sans root, un pare-feu qui refuse tout par défaut, fail2ban et ses bannissements progressifs, les mises à jour de sécurité automatiques.</p>
-  <p>Les sites tournent dans des conteneurs Docker sans droits, derrière un frontal Caddy qui tient le HTTPS. Ce site se met en ligne seul : le serveur tire chaque nouveau commit de GitHub, le pose à côté de la version en ligne et bascule d'un coup, sans accès entrant ni secret sur la machine.</p>
+  <p>Les sites tournent dans des conteneurs Docker sans droits, derrière un frontal Caddy qui tient le HTTPS. Ce site se met en ligne seul : le serveur tire chaque nouveau commit de GitHub, le pose à côté de la version en ligne et bascule d'un coup, sans accès entrant ni secret de déploiement.</p>
   <p>Chaque étape est notée dans le dépôt, avec ses commandes, ses pièges et ses raisons.</p>
   <section>
     <h2>Un piège, trouvé dans les journaux</h2>
@@ -50,7 +50,7 @@
   </section>
   <section>
     <h2>La suite</h2>
-    <p>Les sauvegardes d'abord : les certificats, la configuration, les données à venir. Puis la supervision, avec Prometheus et Grafana, une configuration rejouable avec Ansible, et l'infrastructure décrite par Terraform.</p>
+    <p>Les sauvegardes d'abord : les comptes des joueurs de Honear, la configuration et les certificats. Puis la supervision, avec Prometheus et Grafana, une configuration rejouable avec Ansible, et l'infrastructure décrite par Terraform.</p>
   </section>
   <h2>Pour aller plus loin</h2>
   <ul class="liens">
@@ -58,7 +58,7 @@
   </ul>
 </main>
 <footer class="pied">
-  <p><a href="mailto:contact@mateosan.fr">contact@mateosan.fr</a></p>
+  <p><a href="mailto:sanchezmateo@proton.me">sanchezmateo@proton.me</a></p>
   <nav aria-label="Informations légales">
     <ul>
       <li><a href="/mentions-legales">Mentions légales</a></li>

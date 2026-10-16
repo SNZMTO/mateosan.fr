@@ -78,7 +78,7 @@ export interface Personne {
     readonly accroche: string;
     readonly sections: readonly Section[];
   };
-  /** Le CV, en PDF : sa version publique, qui ne donne que l'adresse du site. */
+  /** Le CV, en PDF : sa version publique, sans téléphone, qui ne donne que l'adresse de contact. */
   readonly cv: {
     readonly texte: string;
     /** Son chemin sur le site (/cv-mateo-sanchez.pdf). */
@@ -87,10 +87,8 @@ export interface Personne {
     readonly nomDuFichier: string;
   };
   readonly contact: {
-    /** L'adresse du site : le pied de page, les pages légales, le CV. */
+    /** La seule adresse que le site et le CV donnent : le pied de page, le bouton « M'écrire », les pages légales, le CV. */
     readonly adresse: string;
-    /** Celle du bouton « M'écrire » : la boîte personnelle de Mateo, qu'il a choisi de montrer. */
-    readonly ecrireA: string;
     readonly liens: readonly Lien[];
   };
 }

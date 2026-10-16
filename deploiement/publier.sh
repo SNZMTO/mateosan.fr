@@ -27,6 +27,8 @@ if [ ! -d "$PUBLIE/versions/$VERSION" ]; then
   # Un lien symbolique ferait servir un fichier hors du site : aucun n'est accepté.
   [ -z "$(find "$TRAVAIL/site" -type l)" ] || refus "Le commit $VERSION contient un lien symbolique dans site/."
   mkdir -p "$PUBLIE/versions"
+  # Une copie coupée (un arrêt, un disque plein) a pu laisser un dossier .nouveau à moitié rempli : on repart de zéro.
+  rm -rf "$PUBLIE/versions/$VERSION.nouveau"
   cp -R "$TRAVAIL/site" "$PUBLIE/versions/$VERSION.nouveau"
   mv "$PUBLIE/versions/$VERSION.nouveau" "$PUBLIE/versions/$VERSION"
 fi
