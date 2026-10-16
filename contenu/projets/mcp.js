@@ -1,5 +1,5 @@
-// Le MCP de Honear, en ligne sur mcp.honear.fr (dépôt de travail SNZMTO/honear-mcp-atelier), d'après le kit que sa session a
-// écrit pour la vitrine.
+// Le MCP de Honear, en ligne sur mcp.honear.fr (dépôt SNZMTO/honear-mcp), d'après le kit que sa session a écrit pour la
+// vitrine.
 
 /** @type {import('../types.js').Projet} */
 const mcp = {
@@ -16,17 +16,24 @@ const mcp = {
   pastilles: ['Python', 'SDK MCP', 'Pydantic', 'Docker'],
   illustrations: [
     {
+      fichier: 'mcp/dans-claude-ai.webp',
+      description:
+        "Dans claude.ai : on demande à jouer la liste, et la fenêtre du mini blind test s'ouvre dans la conversation, sur « Piste 1 sur 5 ».",
+      legende: "dans claude.ai, la fenêtre s'ouvre",
+      source: 'SNZMTO/honear-mcp@89ce456 .github/captures/dans-claude-ai.webp',
+    },
+    {
       fichier: 'mcp/mini-blind-test-ecoute.webp',
       description:
         "Le mini blind test de Honear dans une conversation : le disque tourne pendant l'extrait, et une réponse vient d'être jugée juste.",
-      legende: 'le mini blind test, dans la conversation',
-      source: 'SNZMTO/honear-mcp-atelier@6c4e09b .github/captures/mini-blind-test-ecoute.webp',
+      legende: "pendant l'extrait, une réponse juste",
+      source: 'SNZMTO/honear-mcp@89ce456 .github/captures/mini-blind-test-ecoute.webp',
     },
     {
       fichier: 'mcp/mini-blind-test-revelation.webp',
       description: "La révélation d'une piste : « Yellow » de Coldplay, sa pochette sur l'étiquette du disque, son anecdote et le score.",
       legende: "la révélation d'une piste",
-      source: 'SNZMTO/honear-mcp-atelier@6c4e09b .github/captures/mini-blind-test-revelation.webp',
+      source: 'SNZMTO/honear-mcp@89ce456 .github/captures/mini-blind-test-revelation.webp',
     },
   ],
   sections: [
@@ -47,7 +54,10 @@ const mcp = {
       ],
     },
   ],
-  liens: [{ texte: 'Le brancher, depuis mcp.honear.fr', adresse: 'https://mcp.honear.fr' }],
+  liens: [
+    { texte: 'Le brancher, depuis mcp.honear.fr', adresse: 'https://mcp.honear.fr' },
+    { texte: 'Le code sur GitHub', adresse: 'https://github.com/SNZMTO/honear-mcp' },
+  ],
 };
 
 export default mcp;
