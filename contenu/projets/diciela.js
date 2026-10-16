@@ -10,7 +10,7 @@ const diciela = {
   objet: 'cabane',
   resume: [
     "Une clairière, un tas de bois, un peu de pierre, et la Chimère. On installe le campement, la Chimère porte les matériaux, les cabanes montent planche par planche, puis arrivent les premiers habitants, chacun avec son métier. Aujourd'hui, la première journée se joue.",
-    "La simulation est du C# pur, qui ne sait pas qu'elle est dessinée. Elle est découpée en assemblages dont un test vérifie les frontières, tout son contenu est une donnée, et aucun fichier ne dépasse 200 lignes.",
+    "La simulation est du C# sans MonoBehaviour, qui ne sait pas qu'elle est dessinée. Elle est découpée en assemblages dont un test vérifie les frontières, tout son contenu est une donnée, et aucun fichier C# ne dépasse 200 lignes.",
     "Le dépôt montre aussi le cadre qui tient l'assistant de code d'une session à l'autre : des règles courtes, des procédures écrites, un garde-fou avant chaque commande, et des décisions numérotées.",
   ],
   pastilles: ['C#', 'Unity', 'Simulation testée', 'Cadre pour Claude Code'],
@@ -44,7 +44,7 @@ const diciela = {
     {
       titre: 'Comment je le construis',
       paragraphes: [
-        "DIciELa, c'est mon jeu : le design, les décisions, l'architecture et les essais en jeu. Le C# s'écrit avec Claude Code, dans le cadre que montre le dépôt. Chaque choix y est numéroté, daté et justifié, et une règle de jeu qui manque, l'assistant la demande au lieu de la deviner.",
+        "DIciELa, c'est mon jeu : le design, les décisions et les essais en jeu. Le C# est écrit par Claude Code, dans le cadre que montre le dépôt : je conçois, je tranche, souvent sur ses recommandations, et je vérifie en jeu. Chaque choix y est numéroté, daté et justifié, et une règle de jeu qui manque, l'assistant la demande au lieu de la deviner.",
         "Repartir de zéro quand il le faut : un premier prototype empilait deux versions de chaque chose. Je l'ai arrêté, et cette version repart d'un projet neuf, avec ce qu'il m'a appris.",
         "L'art vient d'un pack acheté sous licence, POLYGON Fantasy Village de Synty Studios : il n'est pas publié, et il faut l'avoir pour voir le jeu.",
       ],

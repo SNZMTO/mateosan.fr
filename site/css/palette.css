@@ -22,7 +22,6 @@
 
   /* Les traits et les marques, jamais sous du texte. */
   --bord: #E4D4B4;
-  --selection: #E2725B;
 
   /* Les étiquettes de kraft de la scène : le carton (sous --texte seul), son bord, sa ficelle, son ombre. */
   --etiquette: #EBD3A7;

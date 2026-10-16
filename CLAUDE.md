@@ -1,6 +1,6 @@
 # mateosan.fr, pour Claude
 
-La vitrine des projets de Mateo, qui cherche une alternance de développeur (data, IA ou full-stack) : c'est ce qu'un recruteur
+La vitrine des projets de Mateo, qui cherche une alternance de développeur (full-stack ou IA) : c'est ce qu'un recruteur
 ouvre en premier. Le contenu vit dans `contenu/`, les pages en sont tirées dans `site/`, servi tel quel sur le VPS partagé
 (`~/vps`, ses règles d'abord). On écrit en français, le code aussi (noms, commentaires, textes).
 

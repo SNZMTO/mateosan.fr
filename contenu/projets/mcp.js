@@ -11,7 +11,7 @@ const mcp = {
   teinte: 'canard',
   objet: 'radio',
   resume: [
-    "Un serveur MCP qui laisse un assistant (Claude, ChatGPT…) préparer une playlist de blind test sur n'importe quel thème, une occasion ou une capture d'écran. L'assistant choisit les titres ; le serveur les vérifie chez Deezer, écarte ce qui jouerait mal et enregistre la liste pour Honear, ou la fait jouer tout de suite dans une fenêtre de la conversation. Il n'appelle lui-même aucune IA.",
+    "Un serveur MCP qui laisse un assistant comme Claude préparer une playlist de blind test sur n'importe quel thème, une occasion ou une capture d'écran. L'assistant choisit les titres ; le serveur les vérifie chez Deezer, écarte ce qui jouerait mal et enregistre la liste pour Honear, ou la fait jouer tout de suite dans une fenêtre de la conversation. Il n'appelle lui-même aucune IA.",
   ],
   pastilles: ['Python', 'SDK MCP', 'Pydantic', 'Docker'],
   illustrations: [
@@ -50,7 +50,7 @@ const mcp = {
     {
       titre: "Comment je l'ai construit",
       paragraphes: [
-        "Je l'ai écrit avec Claude Code, phase après phase, dans le cadre que j'ai posé : le cahier de lancement, les six décisions, les règles du code, et chaque mise en ligne.",
+        "Claude Code l'a écrit, phase après phase, dans le cadre que j'ai posé : le cahier de lancement, les six décisions, les règles du code. Chaque mise en ligne attend mon feu vert.",
       ],
     },
   ],

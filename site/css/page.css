@@ -39,7 +39,7 @@ a:hover {
 }
 
 ::selection {
-  background: var(--selection);
+  background: var(--fond-inverse);
   color: var(--texte-inverse);
 }
 

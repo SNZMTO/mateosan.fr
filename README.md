@@ -16,8 +16,8 @@ posé sur l'établi, chaque projet avec sa page.
   écrire ce fichier et l'ajouter à l'ordre de `contenu/projets.js`, sans toucher au code. Une capture est copiée depuis le dépôt
   du projet dans `site/images/projets/`, et le contenu note d'où elle vient (le dépôt, le commit, le chemin). Tous les textes
   du site sont dans `contenu/`, et leurs types dans `contenu/types.d.ts`.
-- **Le CV en version publique.** `site/cv-mateo-sanchez.pdf` est le CV de Mateo, sans son téléphone, avec l'adresse du site
-  à la place de la sienne : un test vérifie que ses liens n'écrivent qu'à contact@mateosan.fr.
+- **Le CV en version publique.** `site/cv-mateo-sanchez.pdf` est mon CV, sans mon téléphone : un test vérifie qu'il donne
+  l'adresse de contact du site, et aucune autre.
 - **Les pages en sont tirées, avant le commit.** `npm run pages` écrit `site/*.html` ; un test refuse une page qui n'est pas
   exactement ce que donne le contenu. Le serveur sert `site/` tel quel : il n'y a rien à construire, ni à exécuter, sur le VPS.
 - **Lisible par tous.** Les pages sont du HTML simple, qui se lit sans JavaScript, avec un lecteur d'écran ou un vieux
@@ -30,7 +30,7 @@ posé sur l'établi, chaque projet avec sa page.
   données (`site/js/modeles/`, pièce par pièce), tous les nombres de réglage sont dans `site/js/reglages.js`, et les couleurs
   dans la palette. Pour qui demande moins de mouvement, la scène se tient tranquille : ni ressort, ni plongée, ni animation.
   Sans 3D ou sans JavaScript, la liste et ses pages suffisent ; three.js (0.149.0, servi par le site) n'est téléchargé que s'il
-  sert.
+  sert. Il reste à cette version, celle de la scène d'origine, pour en garder le rendu : on n'en change qu'avec une raison.
 - **Rien ne vient d'ailleurs.** Les polices sont servies par mateosan.fr, et la politique de sécurité du contenu
   ([`deploiement/Caddyfile`](deploiement/Caddyfile)) n'accepte ni style ni script écrit dans une page.
 - **Du JavaScript vérifié** par TypeScript au plus strict (`tsc --checkJs --strict`, à partir des commentaires JSDoc), sans
@@ -41,7 +41,7 @@ posé sur l'établi, chaque projet avec sa page.
 [`tests/regles.test.js`](tests/regles.test.js) les vérifie sur les sources elles-mêmes : un test rouge, c'est une règle
 enfreinte, pas un test à changer.
 
-- Chaque module commence par un commentaire qui dit son rôle, et aucun fichier ne dépasse 200 lignes.
+- Chaque module commence par un commentaire qui dit son rôle, et aucun fichier écrit à la main ne dépasse 200 lignes.
 - Aucune couleur hors de [`site/css/palette.css`](site/css/palette.css), aucune ressource chargée d'un autre site, aucun style
   ni script écrit dans une page.
 - Les textes ne s'écrivent que dans `contenu/` : un gabarit des outils n'a en dur que des balises, et un script du site
@@ -52,7 +52,7 @@ enfreinte, pas un test à changer.
 - Rien en attente : pas de remplaçant entre crochets, pas de travail laissé « pour plus tard ».
 
 [`tests/contenu.test.js`](tests/contenu.test.js) vérifie que chaque projet est complet, que ses teintes existent et que ses
-liens sont sûrs, et que le site n'écrit qu'à ses deux adresses (celle du site, celle de « M'écrire ») ; [`tests/scene.test.js`](tests/scene.test.js), que
+liens sont sûrs, et que le site comme le CV n'écrivent qu'à une seule adresse ; [`tests/scene.test.js`](tests/scene.test.js), que
 chaque projet a son objet, que les couleurs des objets sont dans la palette, et que chacun tient sur l'établi sans toucher les
 autres.
 
@@ -80,9 +80,9 @@ python3 -m http.server -d site   # le site sur http://127.0.0.1:8000 (sans la CS
 
 ## Comment je l'ai construit
 
-Ce site est le mien de bout en bout : ce qu'il dit, son allure, ses règles et son hébergement. Pour écrire le code, je travaille
-avec un assistant de code, Claude Code, et les commits co-signés le montrent. Il écrit vite ; c'est moi qui pose le cadre, qui
-tranche et qui vérifie.
+Ce site est le mien de bout en bout : ce qu'il dit, son allure, ses règles et son hébergement. Claude Code en a écrit
+l'essentiel du code, et les commits co-signés le montrent. Moi, je décide de ce qu'il montre, je fixe les règles que les tests
+vérifient, et je passe chaque page au banc d'essai avant de la mettre en ligne.
 
 <sub>© 2026 Mateo Sanchez, tous droits réservés : le code est public pour être lu, pas pour être réutilisé sans mon accord.
 Les polices Fredoka, Nunito et Caveat gardent leur licence, la SIL Open Font License 1.1 (dans
