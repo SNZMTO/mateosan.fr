@@ -5,13 +5,15 @@ const personne = {
   nom: 'Mateo Sanchez',
   surtitre: "L'Établi",
   accroche: 'Étudiant à 42 Marseille, je cherche une alternance de développeur, côté data, IA ou full-stack',
+  debut: "à partir d'avril 2027",
+  duree: 'pour deux ans',
   rythme: "deux semaines en entreprise, une semaine à l'école",
   preuve:
     "Mes projets sont tenus par leurs tests, et Honear, mon blind test multijoueur, se joue en ligne sur un serveur que j'administre.",
   enAnglais: {
     titre: 'In English',
     paragraphes: [
-      "I'm a student at 42 Marseille, looking for an apprenticeship as a developer (data, AI or full-stack): two weeks at the company, one week at school. My projects are held together by their tests, and Honear, my multiplayer music quiz, runs online on a server I administer. This site and the projects are in French; each project's page links to its code.",
+      "I'm a student at 42 Marseille, looking for a two-year apprenticeship as a developer (data, AI or full-stack), starting in April 2027: two weeks at the company, one week at school. My projects are held together by their tests, and Honear, my multiplayer music quiz, runs online on a server I administer. This site and the projects are in French; each project's page links to its code.",
     ],
   },
   teinte: 'noyer',
@@ -30,7 +32,7 @@ const personne = {
         titre: 'Ma formation',
         paragraphes: [
           "Le tronc commun du cursus 42 Next, que j'aurai fini pour mon entrée en alternance.",
-          "Ensuite, en alternance, le titre RNCP de niveau 7 « Expert en architecture informatique », option Architecture de bases de données et data (niveau Bac+5).",
+          "Ensuite, en alternance, le titre RNCP de niveau 6 « Concepteur développeur de solutions informatiques », option Développement d'application web et mobile (niveau Bac+3).",
         ],
       },
       {

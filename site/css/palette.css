@@ -44,7 +44,6 @@
   --scene-gris-fonce: #6E675E;
   --scene-metal: #B9BEC4;
   --scene-laiton: #C08F3C;
-  --scene-noir: #272320;
   --scene-noir-clair: #3B3530;
   --scene-canard: #3E8E9C;
   --scene-tuile: #B5654D;
@@ -58,6 +57,11 @@
   --scene-carte: #FDF4E0;
   --scene-trait: #B9A98C;
   --scene-trait-clair: #CFC0A0;
+  /* La platine de Honear, aux couleurs du jeu (src/ressources/palette.ts de SNZMTO/honear). */
+  --scene-laque: #1F3A33;
+  --scene-vinyle: #1C1715;
+  --scene-alu: #B8AE9D;
+  --scene-miel: #E2A72E;
 }
 
 /* Les teintes des objets de l'établi : le contenu en nomme une par objet (teinte: 'corail'), qui devient --teinte. */

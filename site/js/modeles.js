@@ -6,6 +6,7 @@ import cabane from './modeles/cabane.js';
 import carnet from './modeles/carnet.js';
 import carteDeVisite from './modeles/carte-de-visite.js';
 import platine from './modeles/platine.js';
+import radio from './modeles/radio.js';
 
 /** @type {Readonly<Record<string, import('./types.js').Modele>>} */
 export const modeles = {
@@ -14,4 +15,5 @@ export const modeles = {
   carnet,
   'carte-de-visite': carteDeVisite,
   platine,
+  radio,
 };

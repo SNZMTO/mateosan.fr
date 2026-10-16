@@ -11,7 +11,7 @@ const site = {
     largeur: 1200,
     hauteur: 630,
     description:
-      "L'établi en 3D de mateosan.fr : une cabane au toit de lierre, une platine, une boîte à outils, un carnet et une carte de visite posés sur un plateau de bois.",
+      "L'établi en 3D de mateosan.fr : une cabane au toit de lierre, une platine, un poste de radio, une boîte à outils, un carnet et une carte de visite posés sur un plateau de bois.",
   },
 };
 
