@@ -87,8 +87,10 @@ export interface Personne {
     readonly nomDuFichier: string;
   };
   readonly contact: {
-    /** La seule adresse e-mail du site. */
+    /** L'adresse du site : le pied de page, les pages légales, le CV. */
     readonly adresse: string;
+    /** Celle du bouton « M'écrire » : la boîte personnelle de Mateo, qu'il a choisi de montrer. */
+    readonly ecrireA: string;
     readonly liens: readonly Lien[];
   };
 }

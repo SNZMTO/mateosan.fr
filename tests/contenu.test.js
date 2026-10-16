@@ -1,5 +1,5 @@
 // Le contenu est complet et se tient : chaque projet a ce qu'il faut, ses teintes existent, ses liens sont sûrs, rien n'y attend
-// d'être rempli, et l'adresse de contact est la seule du site.
+// d'être rempli, et le site n'écrit qu'à ses deux adresses.
 
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
@@ -55,11 +55,12 @@ test("aucun texte n'attend d'être rempli : pas de remplaçant entre crochets", 
   assert.deepEqual(enAttente, []);
 });
 
-test("l'adresse de contact est la seule adresse e-mail du site, liens du CV compris", () => {
+test("le site n'écrit qu'à ses deux adresses, celle du site et celle de « M'écrire » ; le CV, qu'à celle du site", () => {
   // Un PDF se lit octet par octet : ses liens y sont écrits en clair.
   const texte = (/** @type {string} */ chemin) => (chemin.endsWith('.pdf') ? readFileSync(new URL(`../${chemin}`, import.meta.url), 'latin1') : lire(chemin));
+  const permises = (/** @type {string} */ chemin) => (chemin.endsWith('.pdf') ? [personne.contact.adresse] : [personne.contact.adresse, personne.contact.ecrireA]);
   const ailleurs = SOURCES.filter((chemin) => /^(?:contenu|site)\/.*\.(?:js|html|pdf)$/.test(chemin)).flatMap((chemin) =>
-    [...texte(chemin).matchAll(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g)].map((m) => m[0]).filter((adresse) => adresse !== personne.contact.adresse)
+    [...texte(chemin).matchAll(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g)].map((m) => m[0]).filter((adresse) => !permises(chemin).includes(adresse))
       .map((adresse) => `${chemin} : ${adresse}`),
   );
   assert.deepEqual(ailleurs, []);
