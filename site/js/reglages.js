@@ -73,8 +73,8 @@ export const reglages = {
     etiquette: 0.12,
   },
 
-  /** La caméra qui plonge sur un objet avant d'ouvrir sa page, en secondes. */
-  plongee: { duree: 1.05 },
+  /** La caméra qui plonge sur un objet avant d'ouvrir son panneau, et qui revient quand il se ferme : en secondes. */
+  plongee: { duree: 1.05, retour: 0.9 },
 
   /** La caméra suit un peu la souris : jusqu'où, et avec quel retard. */
   parallaxe: { x: 0.52, y: 0.3, limite: 1.5, lissage: 0.06 },

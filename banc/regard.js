@@ -1,6 +1,6 @@
 // Le regard du banc : chaque page du site sur un ordinateur et un téléphone, sous Chromium et WebKit. Il relève ce qui cloche
-// (une erreur, un refus de la politique de sécurité, un fichier introuvable, un établi qui ne se pose pas ou ne répond pas au
-// clavier) et en sort en échec ; il laisse une capture de chaque page dans banc/sortie/, à regarder. Il regarde aussi l'accueil
+// (une erreur, un refus de la politique de sécurité, un fichier introuvable, un établi qui ne se pose pas, ne répond pas au
+// clavier ou n'ouvre pas ses panneaux) et en sort en échec ; il laisse une capture de chaque page dans banc/sortie/, à regarder. Il regarde aussi l'accueil
 // d'un navigateur qui ne dessine pas en 3D : la liste y suffit.
 
 import { readdirSync } from 'node:fs';
@@ -31,11 +31,14 @@ const { adresse, fermer } = await servir(PORT);
 const ennuis = [];
 
 /**
- * L'établi s'est posé ; donner le focus au lien d'une carte montre l'étiquette de son objet.
+ * L'établi s'est posé ; donner le focus au lien d'une carte montre l'étiquette de son objet, Entrée ouvre son panneau à son
+ * adresse, et Échap le referme, rendant l'adresse de l'accueil.
  * @param {import('playwright').Page} page
  * @param {string} ici
+ * @param {{ enCours: boolean }} capture Pendant qu'on prend la capture du panneau, ce que dit la console n'est pas le fait du site.
+ * @param {string} fichier Où la ranger.
  */
-async function regarderLEtabli(page, ici) {
+async function regarderLEtabli(page, ici, capture, fichier) {
   const pose = await page.waitForSelector('.scene canvas', { timeout: POSE * 5 }).then(() => true, () => false);
   if (!pose) {
     ennuis.push(`${ici} : l'établi ne s'est pas posé`);
@@ -47,6 +50,20 @@ async function regarderLEtabli(page, ici) {
   const titre = (await lien.textContent())?.trim();
   const etiquette = await page.locator('.etiquette.visible').textContent({ timeout: POSE }).catch(() => null);
   if (etiquette?.trim() !== titre) ennuis.push(`${ici} : le focus sur « ${titre} » ne montre pas son étiquette (${etiquette})`);
+  const adresse = await lien.getAttribute('href');
+  await page.keyboard.press('Enter');
+  const panneau = await page.locator('.panneau[open] h1').textContent({ timeout: POSE * 5 }).catch(() => null);
+  if (panneau?.trim() !== titre || new URL(page.url()).pathname !== adresse) {
+    ennuis.push(`${ici} : Entrée sur « ${titre} » n'ouvre pas son panneau à ${adresse} (${panneau}, ${page.url()})`);
+  }
+  await page.waitForTimeout(POSE);
+  capture.enCours = true;
+  await page.screenshot({ path: fichier });
+  capture.enCours = false;
+  await page.keyboard.press('Escape');
+  await page.waitForURL((url) => url.pathname === '/', { timeout: POSE * 2 }).catch(() => ennuis.push(`${ici} : Échap ne rend pas l'accueil`));
+  if ((await page.locator('.panneau[open]').count()) > 0) ennuis.push(`${ici} : Échap ne ferme pas le panneau`);
+  await page.waitForTimeout(POSE);
   await lien.blur();
   await page.evaluate(() => scrollTo(0, 0));
   await page.waitForTimeout(POSE / 4);
@@ -60,10 +77,10 @@ for (const { nom, navigateur, reglages } of APPAREILS) {
     const ici = `${navigateur.name()} ${nom} ${chemin}`;
     // Pour sa capture, Playwright pose une feuille de style dans la page, que WebKit refuse au nom de la CSP : ce qui se dit
     // pendant la capture n'est pas le fait du site.
-    let enCapture = false;
+    const capture = { enCours: false };
     page.on('console', (message) => {
       // La page introuvable répond 404 exprès : le navigateur le dit dans sa console.
-      const attendue = enCapture || (chemin === INTROUVABLE && message.text().includes('404'));
+      const attendue = capture.enCours || (chemin === INTROUVABLE && message.text().includes('404'));
       if (message.type() === 'error' && !attendue) ennuis.push(`${ici} : ${message.text()}`);
     });
     page.on('pageerror', (erreur) => ennuis.push(`${ici} : ${erreur.message}`));
@@ -72,9 +89,9 @@ for (const { nom, navigateur, reglages } of APPAREILS) {
       if (reponse.status() >= 400 && !attendue) ennuis.push(`${ici} : ${reponse.status()} ${reponse.url()}`);
     });
     await page.goto(adresse + chemin, { waitUntil: 'networkidle' });
-    if (chemin === '/') await regarderLEtabli(page, ici);
     const nomDeCapture = chemin === '/' ? 'accueil' : chemin.slice(1);
-    enCapture = true;
+    if (chemin === '/') await regarderLEtabli(page, ici, capture, `${SORTIE}${navigateur.name()}-${nom}-panneau.png`);
+    capture.enCours = true;
     await page.screenshot({ path: `${SORTIE}${navigateur.name()}-${nom}-${nomDeCapture}.png`, fullPage: true });
     await page.close();
   }

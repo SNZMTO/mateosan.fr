@@ -101,6 +101,8 @@ export function creerEtabli(conteneur, poses, ecouteurs) {
   let avant = null;
   let tourne = false;
   let enVue = true;
+  /** Un panneau couvre la scène : rien à dessiner. */
+  let enPause = false;
   /** @param {number} maintenant En millisecondes. */
   function image(maintenant) {
     if (!tourne) return;
@@ -117,7 +119,7 @@ export function creerEtabli(conteneur, poses, ecouteurs) {
     rendu.render(scene, cadreur.camera);
   }
   function relancer() {
-    const voulu = enVue && !document.hidden;
+    const voulu = enVue && !enPause && !document.hidden;
     if (voulu && !tourne) {
       avant = null;
       requestAnimationFrame(image);
@@ -149,7 +151,12 @@ export function creerEtabli(conteneur, poses, ecouteurs) {
       survoler(null, 0);
       return cadreur.plonger(objet);
     },
-    /** Revient au repos, d'un coup : la page revient de l'historique. */
-    revenir: () => cadreur.revenir(),
+    /** Revient au repos, en chemin ; ou d'un coup, quand la page revient de l'historique. @param {boolean} dUnCoup */
+    revenir: (dUnCoup) => cadreur.revenir(dUnCoup),
+    /** Arrête de dessiner, ou reprend. @param {boolean} oui */
+    mettreEnPause(oui) {
+      enPause = oui;
+      relancer();
+    },
   };
 }

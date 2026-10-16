@@ -1,5 +1,5 @@
 // La caméra de l'établi : cadrée pour que tout l'établi tienne dans la scène, quelle que soit sa forme ; elle suit un peu la
-// souris, et plonge sur un objet, qui s'ouvre, avant que sa page s'ouvre.
+// souris, plonge sur un objet, qui s'ouvre, avant que son panneau s'ouvre, et revient quand il se ferme.
 
 import * as THREE from './three.js';
 import { reglages } from '../reglages.js';
@@ -16,9 +16,10 @@ const enDouceur = (t) => (t < 1 / 2 ? 4 * t ** 3 : 1 - (2 - 2 * t) ** 3 / 2);
  * @typedef {object} Trajet
  * @property {Cadrage} depart
  * @property {Cadrage} arrivee
+ * @property {number} duree En secondes.
  * @property {number} avance De 0 à 1.
- * @property {import('./objets.js').ObjetPose} objet Celui qui s'ouvre en chemin.
- * @property {number} ouverture De combien il était ouvert au départ.
+ * @property {import('./objets.js').ObjetPose} objet Celui qui s'ouvre, ou se referme, en chemin.
+ * @property {{ depart: number, arrivee: number }} ouverture De combien il est ouvert, au départ et à l'arrivée.
  * @property {() => void} fin
  */
 
@@ -56,33 +57,58 @@ export class Cadreur {
    */
   plonger(objet) {
     const { regard, distance, direction } = objet.modele.plongee;
-    const depart = { regard: this.cadrage.regard.clone(), direction: this.cadrage.direction.clone(), distance: this.cadrage.distance };
     const arrivee = { regard: objet.dansLaScene(regard), direction: new THREE.Vector3(...direction).normalize(), distance };
+    // Un autre objet, encore en train de se refermer, se referme d'un coup.
+    if (this.plonge !== null && this.plonge !== objet) this.plonge.ouvert = 0;
     this.plonge = objet;
-    return new Promise((fin) => {
-      this.trajet = { depart, arrivee, avance: 0, objet, ouverture: objet.ouvert, fin };
-    });
+    return new Promise((fin) => this.partir(arrivee, reglages.plongee.duree, 1, fin));
   }
 
-  /** Revient d'un coup au cadrage de repos, l'objet refermé : la page revient de l'historique. */
-  revenir() {
-    if (this.plonge !== null) this.plonge.ouvert = 0;
-    this.plonge = null;
+  /**
+   * Revient au cadrage de repos, et l'objet se referme : en chemin, ou d'un coup quand la page revient de l'historique.
+   * @param {boolean} dUnCoup
+   */
+  revenir(dUnCoup) {
+    const objet = this.plonge;
+    if (objet === null) return;
+    const fin = () => {
+      this.plonge = null;
+    };
+    if (!dUnCoup) {
+      this.partir(this.repos, reglages.plongee.retour, 0, fin);
+      return;
+    }
+    objet.ouvert = 0;
     this.trajet = null;
     this.cadrage = { regard: this.repos.regard.clone(), direction: this.repos.direction.clone(), distance: this.repos.distance };
+    fin();
+  }
+
+  /**
+   * Part vers un cadrage, en ouvrant ou refermant l'objet sur lequel elle a plongé.
+   * @param {Cadrage} arrivee
+   * @param {number} duree En secondes.
+   * @param {number} ouverture Ce que sera l'ouverture de l'objet à l'arrivée.
+   * @param {() => void} fin
+   */
+  partir(arrivee, duree, ouverture, fin) {
+    const objet = this.plonge;
+    if (objet === null) return;
+    const depart = { regard: this.cadrage.regard.clone(), direction: this.cadrage.direction.clone(), distance: this.cadrage.distance };
+    this.trajet = { depart, arrivee, duree, avance: 0, objet, ouverture: { depart: objet.ouvert, arrivee: ouverture }, fin };
   }
 
   /** Une image de plus. @param {number} pas En secondes. @param {boolean} calme Moins de mouvement : la souris n'est pas suivie. */
   avancer(pas, calme) {
     const trajet = this.trajet;
     if (trajet !== null) {
-      trajet.avance = Math.min(1, trajet.avance + pas / reglages.plongee.duree);
+      trajet.avance = Math.min(1, trajet.avance + pas / trajet.duree);
       const k = enDouceur(trajet.avance);
       const { depart, arrivee } = trajet;
       this.cadrage.regard.lerpVectors(depart.regard, arrivee.regard, k);
       this.cadrage.direction.lerpVectors(depart.direction, arrivee.direction, k).normalize();
       this.cadrage.distance = THREE.MathUtils.lerp(depart.distance, arrivee.distance, k);
-      trajet.objet.ouvert = THREE.MathUtils.lerp(trajet.ouverture, 1, k);
+      trajet.objet.ouvert = THREE.MathUtils.lerp(trajet.ouverture.depart, trajet.ouverture.arrivee, k);
       if (trajet.avance === 1) {
         this.trajet = null;
         trajet.fin();

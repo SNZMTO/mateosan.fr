@@ -140,7 +140,7 @@ test("aucun texte écrit dans les scripts du site : ce qu'ils affichent, ils le 
     /\b(?:innerHTML|outerHTML|insertAdjacentHTML|document\.write)\b/,
     /\b(?:textContent|innerText)\s*=\s*['"`]/,
     /\bcreateTextNode\(\s*['"`]/,
-    /\bsetAttribute\(\s*'(?:aria-(?!hidden)[a-z]+|title|alt|placeholder)'/,
+    /\bsetAttribute\(\s*'(?:aria-label|aria-description|title|alt|placeholder)'\s*,\s*['"`]/,
   ];
   const fautes = SCRIPTS_DU_SITE.flatMap((chemin) =>
     motifs.filter((motif) => motif.test(lire(chemin))).map((motif) => `${chemin} : ${motif.source}`),

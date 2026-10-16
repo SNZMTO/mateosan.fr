@@ -1,5 +1,5 @@
 /* Les pages d'un objet de l'établi (un projet, « qui je suis ») et les pages légales : une colonne de lecture, le retour à
-   l'accueil en haut, le pied de page commun à tout le site. */
+   l'accueil en haut, les captures d'un projet, le pied de page commun à tout le site. */
 
 .retour {
   max-width: 760px;
@@ -57,6 +57,38 @@
 
 .fiche .liens {
   margin-top: 12px;
+}
+
+/* Les captures d'un projet : la première en grand, les autres en galerie, chacune avec sa légende écrite à la main. */
+.capture {
+  margin: 0 0 20px;
+}
+
+.capture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1.5px solid var(--bord);
+  border-radius: 12px;
+}
+
+.legende {
+  margin: 6px 6px 0;
+  color: var(--texte-doux);
+  font: 600 21px/1.2 'Caveat', cursive;
+  transform: rotate(-1deg);
+  transform-origin: left center;
+}
+
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+  margin: 20px 0 8px;
+}
+
+.galerie .capture {
+  margin: 0;
 }
 
 .legal .date {

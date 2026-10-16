@@ -6,7 +6,7 @@ import personne from '../../contenu/personne.js';
 import legal from '../../contenu/legal.js';
 import { html } from './html.js';
 
-const STYLES = ['/css/polices.css', '/css/palette.css', '/css/page.css', '/css/accueil.css', '/css/etabli.css', '/css/fiches.css'];
+const STYLES = ['/css/polices.css', '/css/palette.css', '/css/page.css', '/css/accueil.css', '/css/etabli.css', '/css/fiches.css', '/css/panneau.css'];
 
 /**
  * @typedef {object} Description

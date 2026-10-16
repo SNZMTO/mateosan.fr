@@ -68,3 +68,15 @@ test('chaque page légale a son corps, et chaque corps sa page', () => {
   const corps = readdirSync(new URL('../contenu/legal/', import.meta.url)).map((nom) => nom.replace(/\.html$/, ''));
   assert.deepEqual(corps.sort(), legal.map((page) => page.id).sort());
 });
+
+test("chaque capture d'un projet existe, dit ce qu'elle montre et d'où elle vient ; chaque image de site/images/projets/ sert", () => {
+  const illustrations = projets.flatMap((projet) => projet.illustrations ?? []);
+  for (const { fichier, description, legende, source } of illustrations) {
+    assert.ok(SOURCES.includes(`site/images/projets/${fichier}`), `${fichier} n'est pas dans site/images/projets/`);
+    assert.match(fichier, /^[a-z0-9-]+\/[a-z0-9-]+\.(?:webp|jpg)$/, `${fichier} : un dossier par projet, une capture WebP ou JPEG`);
+    assert.ok(description.trim() !== '' && legende.trim() !== '', `${fichier} : sa description et sa légende`);
+    assert.match(source, /^SNZMTO\/[\w.-]+@[0-9a-f]{7,40} \S+$/, `${fichier} : sa source (dépôt@commit chemin)`);
+  }
+  const servies = SOURCES.filter((chemin) => chemin.startsWith('site/images/projets/')).map((chemin) => chemin.slice('site/images/projets/'.length));
+  assert.deepEqual(servies.sort(), illustrations.map(({ fichier }) => fichier).sort(), 'une capture sans projet, ou servie deux fois');
+});

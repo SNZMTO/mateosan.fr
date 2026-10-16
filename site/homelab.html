@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="/css/accueil.css">
 <link rel="stylesheet" href="/css/etabli.css">
 <link rel="stylesheet" href="/css/fiches.css">
+<link rel="stylesheet" href="/css/panneau.css">
 </head>
 <body>
 <nav class="retour"><a href="/"><span aria-hidden="true">←</span> Retour à l'établi</a></nav>
@@ -43,6 +44,14 @@
   <p>Un VPS chez OVH, sous Debian, scanné par des robots dès sa mise en ligne. Chaque protection répond à ce que montrent ses journaux : SSH par clé seulement et sans root, un pare-feu qui refuse tout par défaut, fail2ban et ses bannissements progressifs, les mises à jour de sécurité automatiques.</p>
   <p>Les sites tournent dans des conteneurs Docker sans droits, derrière un frontal Caddy qui tient le HTTPS. Ce site se met en ligne seul : le serveur tire chaque nouveau commit de GitHub, le pose à côté de la version en ligne et bascule d'un coup, sans accès entrant ni secret sur la machine.</p>
   <p>Chaque étape est notée dans le dépôt, avec ses commandes, ses pièges et ses raisons.</p>
+  <section>
+    <h2>Un piège, trouvé dans les journaux</h2>
+    <p>fail2ban annonçait ses bannissements, mais aucun ne s'appliquait : il manquait le paquet nftables. Je l'ai vu en cherchant les bannissements dans les règles du noyau, puis corrigé. La mise en ligne continue a suivi le même chemin : essayée à la main d'abord, puis prouvée en conditions réelles, dans les journaux.</p>
+  </section>
+  <section>
+    <h2>La suite</h2>
+    <p>Les sauvegardes d'abord : les certificats, la configuration, les données à venir. Puis la supervision, avec Prometheus et Grafana, une configuration rejouable avec Ansible, et l'infrastructure décrite par Terraform.</p>
+  </section>
   <h2>Pour aller plus loin</h2>
   <ul class="liens">
     <li><a class="bouton" href="https://github.com/SNZMTO/homelab">Le journal sur GitHub</a></li>
