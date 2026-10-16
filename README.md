@@ -85,4 +85,5 @@ tranche et qui vérifie.
 <sub>© 2026 Mateo Sanchez, tous droits réservés : le code est public pour être lu, pas pour être réutilisé sans mon accord.
 Les polices Fredoka, Nunito et Caveat gardent leur licence, la SIL Open Font License 1.1 (dans
 <code>site/dependances/polices/</code>), et three.js la sienne, la licence MIT (dans <code>site/dependances/three-0.149.0/</code>).
-Les captures de DIciELa montrent l'art du pack POLYGON Fantasy Village, qui reste la propriété de Synty Studios.</sub>
+Les captures de DIciELa montrent l'art du pack POLYGON Fantasy Village, qui reste la propriété de Synty Studios ; une capture
+du MCP de Honear, la pochette de l'album « Parachutes » de Coldplay, qui reste celle de ses ayants droit.</sub>
