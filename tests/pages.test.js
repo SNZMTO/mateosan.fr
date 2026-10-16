@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
+import site from '../contenu/site.js';
 import { toutesLesPages } from '../outils/pages/toutes.js';
 import { contraste, estUnePage, lire, palette, RACINE, SOURCES } from './depot.js';
 
@@ -20,10 +21,11 @@ test("chaque page a sa langue, son titre, sa description, sa favicon, et, sauf l
     for (const motif of [/<html lang="[a-z]{2}">/, /<title>[^<]+<\/title>/, /<meta name="description" content="[^"]+">/, /<link rel="icon" /]) {
       assert.match(page, motif, fichier);
     }
-    const partage = ['canonical', 'og:title', 'og:description', 'og:url'];
+    const partage = ['canonical', 'og:title', 'og:description', 'og:url', `og:image" content="${site.adresse}${site.partage.image}"`];
     if (fichier === '404.html') assert.match(page, /<meta name="robots" content="noindex">/);
     else for (const balise of partage) assert.ok(page.includes(balise), `${fichier} : ${balise}`);
   }
+  assert.ok(existsSync(join(RACINE, 'site', site.partage.image)), `${site.partage.image} : sh banc/lancer.sh partage.js la dessine`);
 });
 
 test('chaque adresse du site citée par une page ou une feuille mène à un fichier', () => {
@@ -38,12 +40,13 @@ test('chaque adresse du site citée par une page ou une feuille mène à un fich
   }
 });
 
-test('chaque texte de la palette tient 4,5:1 sur chaque fond où il se pose', () => {
+test('chaque texte de la palette tient 4,5:1 sur chaque fond où il se pose, et celui des étiquettes sur leur carton', () => {
   const couleurs = [...palette()];
   const de = (/** @type {RegExp} */ motif) => couleurs.filter(([nom]) => motif.test(nom));
   const paires = [
     ...de(/^texte(?!-inverse)/).flatMap((texte) => de(/^fond-(?!inverse)/).map((fond) => ({ texte, fond }))),
     ...de(/^texte-inverse$/).flatMap((texte) => de(/^fond-inverse/).map((fond) => ({ texte, fond }))),
+    ...de(/^texte$/).flatMap((texte) => de(/^etiquette$/).map((fond) => ({ texte, fond }))),
   ];
   assert.ok(paires.length > 0);
   for (const { texte, fond } of paires) {

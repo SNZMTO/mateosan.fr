@@ -7,6 +7,7 @@ const honear = {
   accroche: 'Un blind test multijoueur, en ligne : un écran pour la tablée, un téléphone chacun.',
   etat: 'En ligne',
   teinte: 'moutarde',
+  objet: 'platine',
   resume: [
     "L'hôte ouvre honear.fr sur un ordinateur ou une télé, chacun rejoint le salon avec son téléphone, se fait une pochette, et devine le titre et l'artiste en trente secondes d'extrait. Les playlists viennent de Deezer ou de Spotify.",
     "Un serveur Node tient les parties, avec une seule horloge pour tous les téléphones : chacun entend et voit la même chose au même moment, et ne reçoit que ce qu'il a le droit de savoir. Tout ce qu'on voit, du meuble hi-fi aux pochettes, est dessiné par le code, en low-poly.",

@@ -17,6 +17,7 @@ npm run pages                # site/*.html depuis contenu/ : à relancer après 
 npm test                     # les types, puis les règles, le contenu et les pages
 sh banc/lancer.sh regard.js  # chaque page sous Chromium et WebKit, ordinateur et téléphone ; captures dans banc/sortie/
 sh banc/lancer.sh icones.js  # site/images/apple-touch-icon.png, depuis la favicon
+sh banc/lancer.sh partage.js # site/images/partage.png, l'image de partage : à relancer quand la scène change
 ```
 
 ## Les règles
@@ -26,7 +27,10 @@ sh banc/lancer.sh icones.js  # site/images/apple-touch-icon.png, depuis la favic
 - Les textes sont dans `contenu/`, nulle part ailleurs ; les pages de `site/` ne se retouchent jamais à la main.
 - Les couleurs sont dans `site/css/palette.css`. Aucune ressource ne vient d'un autre site ; aucun style ni script en ligne.
 - Chaque module commence par un commentaire qui dit son rôle ; aucun fichier de plus de 200 lignes.
-- Les dépendances ne vont que dans un sens : `contenu/`, puis `outils/`. Pas de remplaçant, pas de « temporaire », pas de TODO.
+- Les dépendances ne vont que dans un sens : `contenu/`, puis `outils/` ; dans `site/js/`, le socle (réglages, modèles), puis
+  `scene/` et `page/`, puis `demarrage.js`. Pas de remplaçant, pas de « temporaire », pas de TODO.
+- La scène lit tout dans la page et la palette : un objet est un fichier de données de `site/js/modeles/`, un nombre de réglage
+  va dans `site/js/reglages.js`. three.js reste en 0.149.0 (le rendu de la scène d'origine) : on n'en change qu'avec une raison.
 
 ## Mettre en ligne
 

@@ -3,25 +3,32 @@
 La vitrine de mes projets, en ligne sur [mateosan.fr](https://mateosan.fr) : qui je suis en trente secondes, puis ce qui est
 posé sur l'établi, chaque projet avec sa page.
 
-> **In English.** The showcase of my projects, live at [mateosan.fr](https://mateosan.fr). The content lives in plain data
-> files; the pages are written from it before each commit and served as-is by a hardened container, with no build step on the
-> server, no third-party request and a strict Content Security Policy. Tests enforce the rules of the code itself. Code and docs
-> are in French.
+> **In English.** The showcase of my projects, live at [mateosan.fr](https://mateosan.fr): a low-poly 3D workbench (three.js)
+> where each project is an object, on top of plain HTML pages that work without it. The content lives in plain data files; the
+> pages are written from it before each commit and served as-is by a hardened container, with no build step on the server, no
+> third-party request and a strict Content Security Policy. Tests enforce the rules of the code itself. Code and docs are in
+> French.
 
 ## Comment il est fait
 
 - **Le contenu est une donnée.** Chaque projet est un fichier de `contenu/projets/` : son titre, son accroche, son état, son
-  résumé, ses pastilles, ses liens et sa teinte. Ajouter un projet, c'est écrire ce fichier et l'ajouter à l'ordre de
+  résumé, ses pastilles, ses liens, sa teinte et son objet sur l'établi. Ajouter un projet, c'est écrire ce fichier et l'ajouter à l'ordre de
   `contenu/projets.js`, sans toucher au code. Tous les textes du site sont dans `contenu/`, et leurs types dans
   `contenu/types.d.ts`.
 - **Les pages en sont tirées, avant le commit.** `npm run pages` écrit `site/*.html` ; un test refuse une page qui n'est pas
   exactement ce que donne le contenu. Le serveur sert `site/` tel quel : il n'y a rien à construire, ni à exécuter, sur le VPS.
-- **Lisible par tous.** Les pages sont du HTML simple, sans script, qui se lit avec un lecteur d'écran ou un vieux navigateur.
-  Les textes tiennent un contraste de 4,5:1 sur leurs fonds, calculé par les tests depuis la palette.
+- **Lisible par tous.** Les pages sont du HTML simple, qui se lit sans JavaScript, avec un lecteur d'écran ou un vieux
+  navigateur. Les textes tiennent un contraste de 4,5:1 sur leurs fonds, calculé par les tests depuis la palette.
+- **L'établi par-dessus.** Sur l'accueil, si le navigateur dessine en 3D, `site/js/demarrage.js` pose l'établi en tête de la
+  liste des projets : un objet par projet, dont on lit le nom au survol et qui s'ouvre au clic, au doigt (un toucher pour voir,
+  un second pour ouvrir) comme au clavier (le focus sur une carte fait sauter son objet). La scène lit tout dans la page : quels
+  objets poser (`data-objet`), leurs noms, leurs teintes. Les objets sont des données (`site/js/modeles/`, pièce par pièce),
+  tous les nombres de réglage sont dans `site/js/reglages.js`, et les couleurs dans la palette. Sans 3D, ou pour qui demande
+  moins de mouvement, la liste et ses pages suffisent. three.js (0.149.0, servi par le site) n'est téléchargé que s'il sert.
 - **Rien ne vient d'ailleurs.** Les polices sont servies par mateosan.fr, et la politique de sécurité du contenu
   ([`deploiement/Caddyfile`](deploiement/Caddyfile)) n'accepte ni style ni script écrit dans une page.
 - **Du JavaScript vérifié** par TypeScript au plus strict (`tsc --checkJs --strict`, à partir des commentaires JSDoc), sans
-  rien compiler.
+  rien compiler : les outils, les tests et les scripts du site, que le navigateur lit tels quels.
 
 ## Les règles du code
 
@@ -31,12 +38,17 @@ enfreinte, pas un test à changer.
 - Chaque module commence par un commentaire qui dit son rôle, et aucun fichier ne dépasse 200 lignes.
 - Aucune couleur hors de [`site/css/palette.css`](site/css/palette.css), aucune ressource chargée d'un autre site, aucun style
   ni script écrit dans une page.
-- Les textes ne s'écrivent que dans `contenu/` : un gabarit des outils n'a en dur que des balises.
-- Les dépendances ne vont que dans un sens : `contenu/`, puis `outils/`.
+- Les textes ne s'écrivent que dans `contenu/` : un gabarit des outils n'a en dur que des balises, et un script du site
+  n'affiche que ce qu'il lit dans la page.
+- Aucun nombre de réglage dans les scripts du site, hors de `site/js/reglages.js` et des modèles.
+- Les dépendances ne vont que dans un sens : `contenu/`, puis `outils/` ; dans `site/js/`, les réglages et les modèles, puis la
+  scène et la page, qui s'ignorent, puis le démarrage.
 - Rien en attente : pas de remplaçant entre crochets, pas de travail laissé « pour plus tard ».
 
 [`tests/contenu.test.js`](tests/contenu.test.js) vérifie que chaque projet est complet, que ses teintes existent et que ses
-liens sont sûrs, et que la seule adresse e-mail du site est celle de contact.
+liens sont sûrs, et que la seule adresse e-mail du site est celle de contact ; [`tests/scene.test.js`](tests/scene.test.js), que
+chaque projet a son objet, que les couleurs des objets sont dans la palette, et que chacun tient sur l'établi sans toucher les
+autres.
 
 ## Les dossiers
 
@@ -44,9 +56,9 @@ liens sont sûrs, et que la seule adresse e-mail du site est celle de contact.
 | --- | --- |
 | `contenu/` | Les textes : le site, l'interface, la personne, les projets, les pages légales. |
 | `outils/pages/` | Ce qui écrit les pages de `site/` depuis le contenu (`npm run pages`). |
-| `site/` | Ce qui est servi : les pages, les feuilles de style, les images, les polices et leurs licences. |
+| `site/` | Ce qui est servi : les pages, les feuilles de style, les scripts de l'établi (`site/js/`), les images, et ce qui vient d'ailleurs avec sa licence (`site/dependances/` : les polices, three.js). |
 | `tests/` | Les règles, le contenu, les pages. |
-| `banc/` | Le banc d'essai : chaque page sous Chromium et WebKit, sur ordinateur et téléphone, dans l'image Playwright. |
+| `banc/` | Le banc d'essai : chaque page sous Chromium et WebKit, sur ordinateur et téléphone, et l'accueil sans 3D, dans l'image Playwright ; il dessine aussi l'image de partage. |
 | `deploiement/` | Le conteneur, son serveur et le timer qui met `main` en ligne ([`LISEZMOI.md`](deploiement/LISEZMOI.md)). |
 
 ## Lancer en local
@@ -67,5 +79,5 @@ avec un assistant de code, Claude Code, et les commits co-signés le montrent. I
 tranche et qui vérifie.
 
 <sub>© 2026 Mateo Sanchez, tous droits réservés : le code est public pour être lu, pas pour être réutilisé sans mon accord.
-Les polices Fredoka et Nunito gardent leur licence, la SIL Open Font License 1.1 (dans
-<code>site/dependances/polices/</code>).</sub>
+Les polices Fredoka et Nunito gardent leur licence, la SIL Open Font License 1.1 (dans <code>site/dependances/polices/</code>),
+et three.js la sienne, la licence MIT (dans <code>site/dependances/three-0.149.0/</code>).</sub>

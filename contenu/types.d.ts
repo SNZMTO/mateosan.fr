@@ -1,5 +1,6 @@
 // La forme du contenu de mateosan.fr : ce que dit chaque fichier de contenu/, vérifié par npm run types. Une teinte est le nom
-// d'une classe .teinte-<nom> de site/css/palette.css (tests/contenu.test.js le vérifie).
+// d'une classe .teinte-<nom> de site/css/palette.css, un objet celui d'un modèle de site/js/modeles.js (tests/contenu.test.js
+// le vérifie).
 
 /** Un lien vers une autre page, sur le site ou ailleurs. */
 export interface Lien {
@@ -23,6 +24,14 @@ export interface Site {
   readonly langue: string;
   /** La langue pour OpenGraph (fr_FR). */
   readonly locale: string;
+  /** L'image d'un lien partagé : l'établi, que banc/partage.js dessine à cette taille. */
+  readonly partage: {
+    readonly image: string;
+    readonly largeur: number;
+    readonly hauteur: number;
+    /** Ce qu'elle montre, pour qui ne la voit pas. */
+    readonly description: string;
+  };
 }
 
 /** Les libellés de l'interface, communs à toutes les pages. */
@@ -31,7 +40,13 @@ export interface Interface {
   readonly separateur: string;
   readonly retour: string;
   readonly ecrire: string;
-  readonly etabli: { readonly titre: string; readonly intro: string };
+  readonly etabli: {
+    readonly titre: string;
+    readonly intro: string;
+    /** Sous la scène, ce qu'on peut faire de ses objets, à la souris puis au doigt. */
+    readonly consigneSouris: string;
+    readonly consigneDoigt: string;
+  };
   readonly liensDuProjet: string;
   readonly joindre: string;
   readonly navigationLegale: string;
@@ -55,7 +70,9 @@ export interface Personne {
   /** Une phrase qui dit ce que montrent les projets. */
   readonly preuve: string;
   readonly enAnglais: Section;
+  /** La carte « qui je suis » sur l'établi : sa teinte, son objet. */
   readonly teinte: string;
+  readonly objet: string;
   readonly quiJeSuis: {
     readonly titre: string;
     readonly accroche: string;
@@ -78,6 +95,8 @@ export interface Projet {
   /** En ligne, prototype, code privé… */
   readonly etat: string;
   readonly teinte: string;
+  /** Ce qui le représente sur l'établi, dans la scène en 3D : le nom d'un modèle, qui ne sert qu'à lui. */
+  readonly objet: string;
   readonly resume: readonly string[];
   readonly pastilles: readonly string[];
   readonly liens: readonly Lien[];

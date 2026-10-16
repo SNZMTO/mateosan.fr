@@ -15,6 +15,7 @@ const personne = {
     ],
   },
   teinte: 'noyer',
+  objet: 'carte-de-visite',
   quiJeSuis: {
     titre: 'Qui je suis',
     accroche: "Passé par la vente avant le code : j'aime autant expliquer un outil que l'écrire.",

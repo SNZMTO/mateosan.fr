@@ -23,6 +23,41 @@
   /* Les traits et les marques, jamais sous du texte. */
   --bord: #E4D4B4;
   --selection: #E2725B;
+
+  /* Les étiquettes de kraft de la scène : le carton (sous --texte seul), son bord, sa ficelle, son ombre. */
+  --etiquette: #EBD3A7;
+  --etiquette-bord: #BB9F74;
+  --ficelle: #A8834F;
+  --ombre-etiquette: #5A3C1433;
+
+  /* La scène en 3D (site/js/modeles/ nomme ces couleurs sans leur préfixe) : les lumières, le bois et l'ombre de l'établi,
+     puis les matières des objets. */
+  --scene-ciel: #FFF6E4;
+  --scene-sol: #D9B990;
+  --scene-soleil: #FFE9C4;
+  --scene-appoint: #BFD8D2;
+  --scene-ombre: #6E4B26;
+  --scene-bois: #D08C42;
+  --scene-bois-fonce: #8C5A2F;
+  --scene-brun: #5B4224;
+  --scene-gris: #A09585;
+  --scene-gris-fonce: #6E675E;
+  --scene-metal: #B9BEC4;
+  --scene-laiton: #C08F3C;
+  --scene-noir: #272320;
+  --scene-noir-clair: #3B3530;
+  --scene-canard: #3E8E9C;
+  --scene-tuile: #B5654D;
+  --scene-vitre: #D8ECE4;
+  --scene-papier: #FBF1DC;
+  --scene-tranche: #EFE3C4;
+  --scene-ligne: #C4D7CE;
+  --scene-marge: #EEAD98;
+  --scene-ecriture: #A89781;
+  --scene-carton: #F3E8CF;
+  --scene-carte: #FDF4E0;
+  --scene-trait: #B9A98C;
+  --scene-trait-clair: #CFC0A0;
 }
 
 /* Les teintes des objets de l'établi : le contenu en nomme une par objet (teinte: 'corail'), qui devient --teinte. */

@@ -58,6 +58,53 @@ export function contraste(a, b) {
 }
 
 /**
+ * Le code d'un script, sans ses commentaires ni le texte de ses chaînes (remplacé par des espaces) : ce qui reste, ce sont les
+ * noms et les nombres. Ce qu'on glisse dans un gabarit (${…}) reste, puisque c'est du code.
+ * @param {string} code
+ */
+export function codeSansTextes(code) {
+  let reste = '';
+  let i = 0;
+  const lireChaine = (/** @type {string} */ guillemet) => {
+    for (i++; i < code.length && code[i] !== guillemet; i++) if (code[i] === '\\') i++;
+    i++;
+    reste += ' ';
+  };
+  /** @param {boolean} dansUnGabarit Le code lu est dans un ${…}, qui finit à son accolade. */
+  const lireCode = (dansUnGabarit) => {
+    for (let profondeur = 0; i < code.length; ) {
+      const c = code[i] ?? '';
+      if (dansUnGabarit && c === '}' && profondeur === 0) return;
+      if (c === '`') lireGabarit();
+      else if (c === "'" || c === '"') lireChaine(c);
+      else if (code.startsWith('//', i)) i = code.indexOf('\n', i) === -1 ? code.length : code.indexOf('\n', i);
+      else if (code.startsWith('/*', i)) i = code.indexOf('*/', i) + 2;
+      else {
+        if (c === '{') profondeur++;
+        if (c === '}') profondeur--;
+        reste += c;
+        i++;
+      }
+    }
+  };
+  const lireGabarit = () => {
+    for (i++; i < code.length && code[i] !== '`'; ) {
+      if (code[i] === '\\') i += 2;
+      else if (code.startsWith('${', i)) {
+        i += 2;
+        lireCode(true);
+        i++;
+        reste += ' ';
+      } else i++;
+    }
+    i++;
+    reste += ' ';
+  };
+  lireCode(false);
+  return reste;
+}
+
+/**
  * Le texte écrit en dur de chaque gabarit html`…` d'un module : ce qu'on y glisse (${…}) est remplacé par une espace, et les
  * gabarits glissés dans un autre sont rendus à part.
  * @param {string} code
