@@ -53,6 +53,7 @@ const personne = {
   cv: { texte: 'Mon CV (PDF)', fichier: '/cv-mateo-sanchez.pdf', nomDuFichier: 'CV Mateo Sanchez.pdf' },
   contact: {
     adresse: 'contact@mateosan.fr',
+    ecrireA: 'sanchezmateo@proton.me',
     liens: [
       { texte: 'LinkedIn', adresse: 'https://www.linkedin.com/in/mat%C3%A9o-sanchez-2607883a0' },
       { texte: 'GitHub', adresse: 'https://github.com/SNZMTO' },

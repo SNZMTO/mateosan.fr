@@ -52,7 +52,7 @@ enfreinte, pas un test à changer.
 - Rien en attente : pas de remplaçant entre crochets, pas de travail laissé « pour plus tard ».
 
 [`tests/contenu.test.js`](tests/contenu.test.js) vérifie que chaque projet est complet, que ses teintes existent et que ses
-liens sont sûrs, et que la seule adresse e-mail du site est celle de contact ; [`tests/scene.test.js`](tests/scene.test.js), que
+liens sont sûrs, et que le site n'écrit qu'à ses deux adresses (celle du site, celle de « M'écrire ») ; [`tests/scene.test.js`](tests/scene.test.js), que
 chaque projet a son objet, que les couleurs des objets sont dans la palette, et que chacun tient sur l'établi sans toucher les
 autres.
 

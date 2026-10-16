@@ -12,12 +12,12 @@ export function phraseDesTrenteSecondes() {
   return `${debutDePhrase} : ${rythme}.`;
 }
 
-/** Les moyens de me joindre : le CV, l'adresse du site, puis les liens. */
+/** Les moyens de me joindre : le CV, mon adresse, puis les liens. */
 export function contact() {
   const { cv } = personne;
   return html`<ul class="contact">
   <li><a class="bouton" href="${cv.fichier}" download="${cv.nomDuFichier}">${cv.texte}</a></li>
-  <li><a class="bouton" href="mailto:${personne.contact.adresse}">${libelles.ecrire}</a></li>
+  <li><a class="bouton" href="mailto:${personne.contact.ecrireA}">${libelles.ecrire}</a></li>
 ${personne.contact.liens.map((lien) => html`  <li><a class="bouton bouton-clair" href="${lien.adresse}">${lien.texte}</a></li>
 `)}</ul>`;
 }
