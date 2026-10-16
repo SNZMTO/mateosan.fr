@@ -16,6 +16,8 @@ posé sur l'établi, chaque projet avec sa page.
   écrire ce fichier et l'ajouter à l'ordre de `contenu/projets.js`, sans toucher au code. Une capture est copiée depuis le dépôt
   du projet dans `site/images/projets/`, et le contenu note d'où elle vient (le dépôt, le commit, le chemin). Tous les textes
   du site sont dans `contenu/`, et leurs types dans `contenu/types.d.ts`.
+- **Le CV en version publique.** `site/cv-mateo-sanchez.pdf` est le CV de Mateo, sans son téléphone, avec l'adresse du site
+  à la place de la sienne : un test vérifie que ses liens n'écrivent qu'à contact@mateosan.fr.
 - **Les pages en sont tirées, avant le commit.** `npm run pages` écrit `site/*.html` ; un test refuse une page qui n'est pas
   exactement ce que donne le contenu. Le serveur sert `site/` tel quel : il n'y a rien à construire, ni à exécuter, sur le VPS.
 - **Lisible par tous.** Les pages sont du HTML simple, qui se lit sans JavaScript, avec un lecteur d'écran ou un vieux
@@ -60,7 +62,7 @@ autres.
 | --- | --- |
 | `contenu/` | Les textes : le site, l'interface, la personne, les projets, les pages légales. |
 | `outils/pages/` | Ce qui écrit les pages de `site/` depuis le contenu (`npm run pages`). |
-| `site/` | Ce qui est servi : les pages, les feuilles de style, les scripts de l'établi (`site/js/`), les images, et ce qui vient d'ailleurs avec sa licence (`site/dependances/` : les polices, three.js). |
+| `site/` | Ce qui est servi : les pages, le CV, les feuilles de style, les scripts de l'établi (`site/js/`), les images, et ce qui vient d'ailleurs avec sa licence (`site/dependances/` : les polices, three.js). |
 | `tests/` | Les règles, le contenu, les pages. |
 | `banc/` | Le banc d'essai, dans l'image Playwright : chaque page sous Chromium et WebKit, sur ordinateur et téléphone (`regard.js`) ; l'établi au clavier seul, au doigt, avec moins de mouvement, sans 3D et sans JavaScript (`etabli.js`). Il dessine aussi l'image de partage. |
 | `deploiement/` | Le conteneur, son serveur et le timer qui met `main` en ligne ([`LISEZMOI.md`](deploiement/LISEZMOI.md)). |

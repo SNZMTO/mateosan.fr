@@ -78,6 +78,14 @@ export interface Personne {
     readonly accroche: string;
     readonly sections: readonly Section[];
   };
+  /** Le CV, en PDF : sa version publique, qui ne donne que l'adresse du site. */
+  readonly cv: {
+    readonly texte: string;
+    /** Son chemin sur le site (/cv-mateo-sanchez.pdf). */
+    readonly fichier: string;
+    /** Le nom sous lequel il s'enregistre. */
+    readonly nomDuFichier: string;
+  };
   readonly contact: {
     /** La seule adresse e-mail du site. */
     readonly adresse: string;

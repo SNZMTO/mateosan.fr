@@ -2,7 +2,7 @@
 // d'être rempli, et l'adresse de contact est la seule du site.
 
 import assert from 'node:assert/strict';
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import projets from '../contenu/projets.js';
 import personne from '../contenu/personne.js';
@@ -55,9 +55,11 @@ test("aucun texte n'attend d'être rempli : pas de remplaçant entre crochets", 
   assert.deepEqual(enAttente, []);
 });
 
-test("l'adresse de contact est la seule adresse e-mail du site", () => {
-  const ailleurs = SOURCES.filter((chemin) => /^(?:contenu|site)\/.*\.(?:js|html)$/.test(chemin)).flatMap((chemin) =>
-    [...lire(chemin).matchAll(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g)].map((m) => m[0]).filter((adresse) => adresse !== personne.contact.adresse)
+test("l'adresse de contact est la seule adresse e-mail du site, liens du CV compris", () => {
+  // Un PDF se lit octet par octet : ses liens y sont écrits en clair.
+  const texte = (/** @type {string} */ chemin) => (chemin.endsWith('.pdf') ? readFileSync(new URL(`../${chemin}`, import.meta.url), 'latin1') : lire(chemin));
+  const ailleurs = SOURCES.filter((chemin) => /^(?:contenu|site)\/.*\.(?:js|html|pdf)$/.test(chemin)).flatMap((chemin) =>
+    [...texte(chemin).matchAll(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g)].map((m) => m[0]).filter((adresse) => adresse !== personne.contact.adresse)
       .map((adresse) => `${chemin} : ${adresse}`),
   );
   assert.deepEqual(ailleurs, []);
