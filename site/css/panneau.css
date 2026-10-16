@@ -1,0 +1,45 @@
+/* Le panneau de l'accueil (site/js/page/panneau.js) : la page d'un objet, ouverte par-dessus l'établi, qui couvre tout l'écran
+   et défile seule, l'accueil immobile dessous. Son contenu garde l'allure de sa page (fiches.css). */
+
+.panneau {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0 16px;
+  border: 0;
+  background: var(--fond-page);
+  color: var(--texte);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.panneau::backdrop {
+  background: var(--fond-page);
+}
+
+.panneau[open] {
+  animation: entrer 350ms ease-out;
+}
+
+@keyframes entrer {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+.panneau .fiche {
+  margin-bottom: calc(40px + env(safe-area-inset-bottom));
+}
+
+html:has(.panneau[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panneau[open] {
+    animation: none;
+  }
+}

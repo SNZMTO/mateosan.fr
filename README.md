@@ -12,7 +12,8 @@ posé sur l'établi, chaque projet avec sa page.
 ## Comment il est fait
 
 - **Le contenu est une donnée.** Chaque projet est un fichier de `contenu/projets/` : son titre, son accroche, son état, son
-  résumé, ses pastilles, ses liens, sa teinte et son objet sur l'établi. Ajouter un projet, c'est écrire ce fichier et l'ajouter à l'ordre de
+  résumé, ses pastilles, ses captures, ses sections, ses liens, sa teinte et son objet sur l'établi. Une capture est copiée
+  depuis le dépôt du projet dans `site/images/projets/`, et le contenu note d'où elle vient (le dépôt, le commit, le chemin). Ajouter un projet, c'est écrire ce fichier et l'ajouter à l'ordre de
   `contenu/projets.js`, sans toucher au code. Tous les textes du site sont dans `contenu/`, et leurs types dans
   `contenu/types.d.ts`.
 - **Les pages en sont tirées, avant le commit.** `npm run pages` écrit `site/*.html` ; un test refuse une page qui n'est pas
@@ -21,7 +22,9 @@ posé sur l'établi, chaque projet avec sa page.
   navigateur. Les textes tiennent un contraste de 4,5:1 sur leurs fonds, calculé par les tests depuis la palette.
 - **L'établi par-dessus.** Sur l'accueil, si le navigateur dessine en 3D, `site/js/demarrage.js` pose l'établi en tête de la
   liste des projets : un objet par projet, dont on lit le nom au survol et qui s'ouvre au clic, au doigt (un toucher pour voir,
-  un second pour ouvrir) comme au clavier (le focus sur une carte fait sauter son objet). La scène lit tout dans la page : quels
+  un second pour ouvrir) comme au clavier (le focus sur une carte fait sauter son objet). Choisir un objet y plonge, puis
+  ouvre sa page dans un panneau, sans quitter l'accueil : l'adresse suit, Échap ou le retour du navigateur le referme, et la
+  caméra revient. La scène lit tout dans la page : quels
   objets poser (`data-objet`), leurs noms, leurs teintes. Les objets sont des données (`site/js/modeles/`, pièce par pièce),
   tous les nombres de réglage sont dans `site/js/reglages.js`, et les couleurs dans la palette. Sans 3D, ou pour qui demande
   moins de mouvement, la liste et ses pages suffisent. three.js (0.149.0, servi par le site) n'est téléchargé que s'il sert.
@@ -79,5 +82,6 @@ avec un assistant de code, Claude Code, et les commits co-signés le montrent. I
 tranche et qui vérifie.
 
 <sub>© 2026 Mateo Sanchez, tous droits réservés : le code est public pour être lu, pas pour être réutilisé sans mon accord.
-Les polices Fredoka et Nunito gardent leur licence, la SIL Open Font License 1.1 (dans <code>site/dependances/polices/</code>),
-et three.js la sienne, la licence MIT (dans <code>site/dependances/three-0.149.0/</code>).</sub>
+Les polices Fredoka, Nunito et Caveat gardent leur licence, la SIL Open Font License 1.1 (dans
+<code>site/dependances/polices/</code>), et three.js la sienne, la licence MIT (dans <code>site/dependances/three-0.149.0/</code>).
+Les captures de DIciELa montrent l'art du pack POLYGON Fantasy Village, qui reste la propriété de Synty Studios.</sub>

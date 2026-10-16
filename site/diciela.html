@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="/css/accueil.css">
 <link rel="stylesheet" href="/css/etabli.css">
 <link rel="stylesheet" href="/css/fiches.css">
+<link rel="stylesheet" href="/css/panneau.css">
 </head>
 <body>
 <nav class="retour"><a href="/"><span aria-hidden="true">←</span> Retour à l'établi</a></nav>
@@ -40,9 +41,33 @@
       <li>Cadre pour Claude Code</li>
     </ul>
   </header>
+  <figure class="capture">
+    <img src="/images/projets/diciela/toit-et-lierre.jpg" width="1600" height="900" alt="Une cabane coiffée de lierre, la Chimère qui s'affaire à côté, le bois et la pierre du campement, et la prochaine construction en fantôme." loading="eager">
+    <figcaption class="legende">une cabane coiffée de lierre, et la Chimère au travail</figcaption>
+  </figure>
   <p>Une clairière, un tas de bois, un peu de pierre, et la Chimère. On installe le campement, la Chimère porte les matériaux, les cabanes montent planche par planche, puis arrivent les premiers habitants, chacun avec son métier. Aujourd'hui, la première journée se joue.</p>
   <p>La simulation est du C# pur, qui ne sait pas qu'elle est dessinée. Elle est découpée en assemblages dont un test vérifie les frontières, tout son contenu est une donnée, et aucun fichier ne dépasse 200 lignes.</p>
   <p>Le dépôt montre aussi le cadre qui tient l'assistant de code d'une session à l'autre : des règles courtes, des procédures écrites, un garde-fou avant chaque commande, et des décisions numérotées.</p>
+  <div class="galerie">
+  <figure class="capture">
+    <img src="/images/projets/diciela/creation.jpg" width="1600" height="900" alt="L'écran de création de la Chimère, dans l'atelier : la mascotte, et le panneau de ses choix (la tête, le corps, la queue, les oreilles…)." loading="lazy">
+    <figcaption class="legende">la Chimère, dans l'atelier</figcaption>
+  </figure>
+  <figure class="capture">
+    <img src="/images/projets/diciela/chantier.jpg" width="1600" height="900" alt="Un chantier à mi-hauteur, et la fiche de la cabane en dessous." loading="lazy">
+    <figcaption class="legende">une cabane qui monte</figcaption>
+  </figure>
+  <figure class="capture">
+    <img src="/images/projets/diciela/premiers-habitants.jpg" width="1600" height="900" alt="La cabane bâtie, le campement, la Chimère et les deux premiers habitants." loading="lazy">
+    <figcaption class="legende">les premiers habitants</figcaption>
+  </figure>
+  </div>
+  <section>
+    <h2>Comment je le construis</h2>
+    <p>DIciELa, c'est mon jeu : le design, les décisions, l'architecture et les essais en jeu. Le C# s'écrit avec Claude Code, dans le cadre que montre le dépôt. Chaque choix y est numéroté, daté et justifié, et une règle de jeu qui manque, l'assistant la demande au lieu de la deviner.</p>
+    <p>Repartir de zéro quand il le faut : un premier prototype empilait deux versions de chaque chose. Je l'ai arrêté, et cette version repart d'un projet neuf, avec ce qu'il m'a appris.</p>
+    <p>L'art vient d'un pack acheté sous licence, POLYGON Fantasy Village de Synty Studios : il n'est pas publié, et il faut l'avoir pour voir le jeu.</p>
+  </section>
   <h2>Pour aller plus loin</h2>
   <ul class="liens">
     <li><a class="bouton" href="https://github.com/SNZMTO/DIciELa">Le code sur GitHub</a></li>

@@ -85,6 +85,18 @@ export interface Personne {
   };
 }
 
+/** Une capture d'un projet, copiée depuis son dépôt dans site/images/projets/. */
+export interface Illustration {
+  /** Son chemin sous site/images/projets/ (honear/piste.webp). */
+  readonly fichier: string;
+  /** Ce qu'elle montre, pour qui ne la voit pas (son texte alternatif). */
+  readonly description: string;
+  /** Ce qu'on écrit dessous, à la main. */
+  readonly legende: string;
+  /** D'où elle vient : le dépôt, le commit et le chemin (SNZMTO/honear@e61ec79 .github/captures/piste.webp). */
+  readonly source: string;
+}
+
 /** Un projet posé sur l'établi, et sa page. */
 export interface Projet {
   /** Son adresse sur le site (/honear) : des minuscules, des chiffres et des tirets. */
@@ -99,6 +111,10 @@ export interface Projet {
   readonly objet: string;
   readonly resume: readonly string[];
   readonly pastilles: readonly string[];
+  /** Ses captures : la première ouvre sa page, les autres suivent le résumé. */
+  readonly illustrations?: readonly Illustration[];
+  /** Ce qui suit le résumé : comment il est construit, ce qui vient ensuite. */
+  readonly sections?: readonly Section[];
   readonly liens: readonly Lien[];
 }
 

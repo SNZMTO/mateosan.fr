@@ -29,6 +29,8 @@ sh banc/lancer.sh partage.js # site/images/partage.png, l'image de partage : à 
 - Chaque module commence par un commentaire qui dit son rôle ; aucun fichier de plus de 200 lignes.
 - Les dépendances ne vont que dans un sens : `contenu/`, puis `outils/` ; dans `site/js/`, le socle (réglages, modèles), puis
   `scene/` et `page/`, puis `demarrage.js`. Pas de remplaçant, pas de « temporaire », pas de TODO.
+- Une capture de projet se copie depuis son dépôt dans `site/images/projets/<id>/`, telle quelle, avec sa source dans le
+  contenu ; jamais depuis un dépôt privé sans l'accord de Mateo.
 - La scène lit tout dans la page et la palette : un objet est un fichier de données de `site/js/modeles/`, un nombre de réglage
   va dans `site/js/reglages.js`. three.js reste en 0.149.0 (le rendu de la scène d'origine) : on n'en change qu'avec une raison.
 

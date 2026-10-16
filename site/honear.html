@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="/css/accueil.css">
 <link rel="stylesheet" href="/css/etabli.css">
 <link rel="stylesheet" href="/css/fiches.css">
+<link rel="stylesheet" href="/css/panneau.css">
 </head>
 <body>
 <nav class="retour"><a href="/"><span aria-hidden="true">←</span> Retour à l'établi</a></nav>
@@ -40,9 +41,28 @@
       <li>RGPD</li>
     </ul>
   </header>
+  <figure class="capture">
+    <img src="/images/projets/honear/piste.webp" width="1440" height="900" alt="Une piste en cours : la platine tourne, les pochettes des joueurs devant, le disque mystère à droite." loading="eager">
+    <figcaption class="legende">une piste en cours, sur l'écran de la tablée</figcaption>
+  </figure>
   <p>L'hôte ouvre honear.fr sur un ordinateur ou une télé, chacun rejoint le salon avec son téléphone, se fait une pochette, et devine le titre et l'artiste en trente secondes d'extrait. Les playlists viennent de Deezer ou de Spotify.</p>
   <p>Un serveur Node tient les parties, avec une seule horloge pour tous les téléphones : chacun entend et voit la même chose au même moment, et ne reçoit que ce qu'il a le droit de savoir. Tout ce qu'on voit, du meuble hi-fi aux pochettes, est dessiné par le code, en low-poly.</p>
   <p>Le code est en TypeScript strict, découpé en couches, et des tests vérifient l'architecture elle-même. Le jeu tourne dans un conteneur Docker durci, et les comptes des joueurs ont leur registre RGPD.</p>
+  <div class="galerie">
+  <figure class="capture">
+    <img src="/images/projets/honear/accueil.webp" width="1440" height="900" alt="L'accueil de honear.fr : le bac des thèmes, la platine, l'ampli, et le bouton « On pose un disque ? »." loading="lazy">
+    <figcaption class="legende">l'accueil, sur honear.fr</figcaption>
+  </figure>
+  <figure class="capture">
+    <img src="/images/projets/honear/revelation.webp" width="1440" height="900" alt="La révélation : le titre, « Les Démons de minuit », sur le disque, et les points gagnés sous la pochette de chaque joueur." loading="lazy">
+    <figcaption class="legende">la révélation et les points</figcaption>
+  </figure>
+  </div>
+  <section>
+    <h2>Comment je l'ai construit</h2>
+    <p>Honear est mon projet de bout en bout : l'idée, le meuble et son style, le découpage en couches, les règles du code, la sécurité et l'hébergement. Pour écrire le code, je travaille avec un assistant de code, Claude Code, et les commits co-signés le montrent. Il écrit vite ; c'est moi qui pose le cadre, qui tranche et qui vérifie.</p>
+    <p>Le jeu est passé par sept étapes, chacune validée sur des planches avant la suivante, jusqu'à un prototype jouable contre un serveur simulé. Chaque règle d'architecture est un test, si bien que le code ne peut pas dériver sans que ça se voie. Et il s'essaie sur de vrais téléphones : plusieurs bugs ne se voyaient que sur iPhone.</p>
+  </section>
   <h2>Pour aller plus loin</h2>
   <ul class="liens">
     <li><a class="bouton" href="https://honear.fr">Jouer sur honear.fr</a></li>

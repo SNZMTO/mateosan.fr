@@ -1,4 +1,5 @@
-/* Les polices du site, servies depuis mateosan.fr : Fredoka pour les titres, Nunito pour le texte. Ce sont des polices
+/* Les polices du site, servies depuis mateosan.fr : Fredoka pour les titres, Nunito pour le texte, Caveat pour ce qui
+   s'écrit à la main (les légendes des captures). Ce sont des polices
    variables (une graisse au choix dans la plage), réduites à l'alphabet latin, qui suffit au français et à l'anglais. Leur
    licence (SIL OFL 1.1) est à côté d'elles, dans /dependances/polices/. */
 
@@ -16,4 +17,12 @@
   font-weight: 400 800;
   font-display: swap;
   src: url('/dependances/polices/nunito-v32-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/dependances/polices/caveat-v23-latin.woff2') format('woff2');
 }

@@ -18,7 +18,8 @@ contenu/ ──npm run pages──▶ site/ ──commit, push sur main──▶
   peut le dire.
 - **Le conteneur** sert le site : le Caddy du frontal, sans capacité, en tant que `nobody`, en lecture seule, sans port publié.
   Il pose la politique de sécurité du contenu (CSP) du site, sans `'unsafe-inline'` ni `'unsafe-eval'` : aucune page n'écrit de
-  style ni de script en ligne. Le frontal tient le HTTPS et les en-têtes de sécurité communs.
+  style ni de script en ligne, et les scripts ne lisent que le site lui-même (l'accueil y lit la page d'un projet pour l'ouvrir
+  dans son panneau). Le frontal tient le HTTPS et les en-têtes de sécurité communs.
 - **Le déploiement** : le VPS tire, rien ne pousse vers lui. Le timer `mateosan-publier` regarde GitHub toutes les deux minutes,
   en tant que `mateosan` (sans shell ni droits, qui n'écrit que dans son dépôt et dans le site), pose le nouveau `site/` à côté
   de la version en ligne et bascule d'un coup. Il n'exécute rien de ce qu'il lit sur GitHub : son outil, `publier.sh`, est posé

@@ -14,6 +14,20 @@ const homelab = {
     'Chaque étape est notée dans le dépôt, avec ses commandes, ses pièges et ses raisons.',
   ],
   pastilles: ['Debian', 'Docker', 'Caddy', 'Déploiement continu'],
+  sections: [
+    {
+      titre: 'Un piège, trouvé dans les journaux',
+      paragraphes: [
+        "fail2ban annonçait ses bannissements, mais aucun ne s'appliquait : il manquait le paquet nftables. Je l'ai vu en cherchant les bannissements dans les règles du noyau, puis corrigé. La mise en ligne continue a suivi le même chemin : essayée à la main d'abord, puis prouvée en conditions réelles, dans les journaux.",
+      ],
+    },
+    {
+      titre: 'La suite',
+      paragraphes: [
+        "Les sauvegardes d'abord : les certificats, la configuration, les données à venir. Puis la supervision, avec Prometheus et Grafana, une configuration rejouable avec Ansible, et l'infrastructure décrite par Terraform.",
+      ],
+    },
+  ],
   liens: [{ texte: 'Le journal sur GitHub', adresse: 'https://github.com/SNZMTO/homelab' }],
 };
 
