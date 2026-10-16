@@ -7,6 +7,7 @@ const ecole42 = {
   accroche: "Les projets de l'école, en C, en Python et en système, et deux jeux faits en équipe.",
   etat: 'Code privé',
   teinte: 'corail',
+  objet: 'carnet',
   resume: [
     "À 42, on apprend projet après projet, sans cours ni professeurs. Tout s'écrit à la main, sans assistant, et chaque projet est corrigé par d'autres étudiants, qui font expliquer son code.",
     'En C : libft, ft_printf, get_next_line et push_swap. En Python : onze projets, des bases du langage à un Pac-Man jouable, en binôme. En système : Born2beRoot, Net_Practice et Inception. Le code de ces projets reste privé.',

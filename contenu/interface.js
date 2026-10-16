@@ -8,6 +8,8 @@ const libelles = {
   etabli: {
     titre: "Sur l'établi",
     intro: 'Mes projets, et qui je suis : chacun a sa page.',
+    consigneSouris: "Survolez un objet pour lire son nom, cliquez pour l'ouvrir.",
+    consigneDoigt: "Touchez un objet pour lire son nom, touchez-le encore pour l'ouvrir.",
   },
   liensDuProjet: 'Pour aller plus loin',
   joindre: 'Me joindre',

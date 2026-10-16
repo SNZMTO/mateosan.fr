@@ -16,7 +16,7 @@
 	root * /srv/publie/actuel
 
 	# Tout vient de mateosan.fr, et rien ne s'écrit dans les pages : ni style, ni script.
-	header Content-Security-Policy "default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+	header Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
 
 	# Les dépendances ne changent jamais à une même adresse (la version est dans le nom) ; le reste se revérifie à chaque fois.
 	@dependances path /dependances/*

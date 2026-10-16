@@ -13,6 +13,7 @@ export function pageAccueil() {
     titre: personne.nom + libelles.separateur + personne.surtitre,
     description: phrase,
     chemin: '/',
+    scripts: ['/js/demarrage.js'],
     corps: html`<header class="entete">
   <p class="surtitre">${personne.surtitre}</p>
   <h1>${personne.nom}</h1>
@@ -21,11 +22,11 @@ export function pageAccueil() {
   ${contact()}
 </header>
 <main>
-  <section class="etabli" aria-labelledby="etabli">
+  <section class="etabli" aria-labelledby="etabli" data-consigne-souris="${libelles.etabli.consigneSouris}" data-consigne-doigt="${libelles.etabli.consigneDoigt}">
     <h2 id="etabli">${libelles.etabli.titre}</h2>
     <p>${libelles.etabli.intro}</p>
     <ol class="objets">
-${projets.map((projet) => html`      <li class="objet teinte-${projet.teinte}">
+${projets.map((projet) => html`      <li class="objet teinte-${projet.teinte}" data-objet="${projet.objet}">
         <h3><a href="/${projet.id}">${projet.titre}</a></h3>
         <p class="etat">${projet.etat}</p>
         <p>${projet.accroche}</p>
@@ -33,7 +34,7 @@ ${projets.map((projet) => html`      <li class="objet teinte-${projet.teinte}">
 ${projet.pastilles.map((pastille) => html`          <li>${pastille}</li>
 `)}        </ul>
       </li>
-`)}      <li class="objet teinte-${personne.teinte}">
+`)}      <li class="objet teinte-${personne.teinte}" data-objet="${personne.objet}">
         <h3><a href="/qui-je-suis">${personne.quiJeSuis.titre}</a></h3>
         <p>${personne.quiJeSuis.accroche}</p>
       </li>

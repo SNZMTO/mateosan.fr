@@ -6,7 +6,7 @@ import personne from '../../contenu/personne.js';
 import legal from '../../contenu/legal.js';
 import { html } from './html.js';
 
-const STYLES = ['/css/polices.css', '/css/palette.css', '/css/page.css', '/css/accueil.css', '/css/fiches.css'];
+const STYLES = ['/css/polices.css', '/css/palette.css', '/css/page.css', '/css/accueil.css', '/css/etabli.css', '/css/fiches.css'];
 
 /**
  * @typedef {object} Description
@@ -14,10 +14,11 @@ const STYLES = ['/css/polices.css', '/css/palette.css', '/css/page.css', '/css/a
  * @property {string} description
  * @property {string | undefined} chemin Son adresse sur le site (/honear) ; absente, la page n'est pas indexée (la 404).
  * @property {import('./html.js').Html} corps Ce qui va dans <body>, avant le pied de page.
+ * @property {readonly string[]} [scripts] Les modules JavaScript de la page, par leur adresse.
  */
 
 /** @param {Description} page */
-export function documentComplet({ titre, description, chemin, corps }) {
+export function documentComplet({ titre, description, chemin, corps, scripts = [] }) {
   const adresse = chemin === undefined ? undefined : site.adresse + chemin;
   return html`<!doctype html>
 <html lang="${site.langue}">
@@ -30,6 +31,7 @@ ${adresse === undefined ? html`<meta name="robots" content="noindex">` : canoniq
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 ${STYLES.map((feuille) => html`<link rel="stylesheet" href="${feuille}">
+`)}${scripts.map((script) => html`<script type="module" src="${script}"></script>
 `)}</head>
 <body>
 ${corps}
@@ -47,7 +49,12 @@ function canonique(adresse, titre, description) {
 <meta property="og:site_name" content="${site.nom}">
 <meta property="og:title" content="${titre}">
 <meta property="og:description" content="${description}">
-<meta property="og:url" content="${adresse}">`;
+<meta property="og:url" content="${adresse}">
+<meta property="og:image" content="${site.adresse + site.partage.image}">
+<meta property="og:image:width" content="${String(site.partage.largeur)}">
+<meta property="og:image:height" content="${String(site.partage.hauteur)}">
+<meta property="og:image:alt" content="${site.partage.description}">
+<meta name="twitter:card" content="summary_large_image">`;
 }
 
 function piedDePage() {

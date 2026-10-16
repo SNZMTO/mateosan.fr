@@ -12,7 +12,8 @@ contenu/ ──npm run pages──▶ site/ ──commit, push sur main──▶
 ## Ce qui est en ligne
 
 - **Le site** est le dossier `site/` du dernier commit de `main`, tel quel : des pages HTML écrites depuis `contenu/` avant le
-  commit (et vérifiées par les tests), leurs feuilles de style, leurs images et leurs polices. Il n'y a rien à construire sur le
+  commit (et vérifiées par les tests), leurs feuilles de style, les scripts de l'établi en 3D, leurs images, leurs polices et
+  three.js. Il n'y a rien à construire sur le
   VPS. Le site ne charge rien d'ailleurs : aucun visiteur ne donne son adresse IP à un tiers, et la page « Confidentialité »
   peut le dire.
 - **Le conteneur** sert le site : le Caddy du frontal, sans capacité, en tant que `nobody`, en lecture seule, sans port publié.
