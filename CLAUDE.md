@@ -16,6 +16,7 @@ npm ci                       # les outils (typescript, playwright sans navigateu
 npm run pages                # site/*.html depuis contenu/ : à relancer après chaque changement du contenu ou d'outils/pages
 npm test                     # les types, puis les règles, le contenu et les pages
 sh banc/lancer.sh regard.js  # chaque page sous Chromium et WebKit, ordinateur et téléphone ; captures dans banc/sortie/
+sh banc/lancer.sh etabli.js  # l'établi au clavier seul, au doigt, au calme, sans 3D et sans JavaScript
 sh banc/lancer.sh icones.js  # site/images/apple-touch-icon.png, depuis la favicon
 sh banc/lancer.sh partage.js # site/images/partage.png, l'image de partage : à relancer quand la scène change
 ```

@@ -12,22 +12,23 @@ posé sur l'établi, chaque projet avec sa page.
 ## Comment il est fait
 
 - **Le contenu est une donnée.** Chaque projet est un fichier de `contenu/projets/` : son titre, son accroche, son état, son
-  résumé, ses pastilles, ses captures, ses sections, ses liens, sa teinte et son objet sur l'établi. Une capture est copiée
-  depuis le dépôt du projet dans `site/images/projets/`, et le contenu note d'où elle vient (le dépôt, le commit, le chemin). Ajouter un projet, c'est écrire ce fichier et l'ajouter à l'ordre de
-  `contenu/projets.js`, sans toucher au code. Tous les textes du site sont dans `contenu/`, et leurs types dans
-  `contenu/types.d.ts`.
+  résumé, ses pastilles, ses captures, ses sections, ses liens, sa teinte et son objet sur l'établi. Ajouter un projet, c'est
+  écrire ce fichier et l'ajouter à l'ordre de `contenu/projets.js`, sans toucher au code. Une capture est copiée depuis le dépôt
+  du projet dans `site/images/projets/`, et le contenu note d'où elle vient (le dépôt, le commit, le chemin). Tous les textes
+  du site sont dans `contenu/`, et leurs types dans `contenu/types.d.ts`.
 - **Les pages en sont tirées, avant le commit.** `npm run pages` écrit `site/*.html` ; un test refuse une page qui n'est pas
   exactement ce que donne le contenu. Le serveur sert `site/` tel quel : il n'y a rien à construire, ni à exécuter, sur le VPS.
 - **Lisible par tous.** Les pages sont du HTML simple, qui se lit sans JavaScript, avec un lecteur d'écran ou un vieux
   navigateur. Les textes tiennent un contraste de 4,5:1 sur leurs fonds, calculé par les tests depuis la palette.
 - **L'établi par-dessus.** Sur l'accueil, si le navigateur dessine en 3D, `site/js/demarrage.js` pose l'établi en tête de la
   liste des projets : un objet par projet, dont on lit le nom au survol et qui s'ouvre au clic, au doigt (un toucher pour voir,
-  un second pour ouvrir) comme au clavier (le focus sur une carte fait sauter son objet). Choisir un objet y plonge, puis
-  ouvre sa page dans un panneau, sans quitter l'accueil : l'adresse suit, Échap ou le retour du navigateur le referme, et la
-  caméra revient. La scène lit tout dans la page : quels
-  objets poser (`data-objet`), leurs noms, leurs teintes. Les objets sont des données (`site/js/modeles/`, pièce par pièce),
-  tous les nombres de réglage sont dans `site/js/reglages.js`, et les couleurs dans la palette. Sans 3D, ou pour qui demande
-  moins de mouvement, la liste et ses pages suffisent. three.js (0.149.0, servi par le site) n'est téléchargé que s'il sert.
+  un second pour ouvrir) comme au clavier (le focus sur une carte fait sauter son objet). Choisir un objet y plonge, puis ouvre
+  sa page dans un panneau, sans quitter l'accueil : l'adresse suit, Échap ou le retour du navigateur le referme, et la caméra
+  revient. La scène lit tout dans la page : quels objets poser (`data-objet`), leurs noms, leurs teintes. Les objets sont des
+  données (`site/js/modeles/`, pièce par pièce), tous les nombres de réglage sont dans `site/js/reglages.js`, et les couleurs
+  dans la palette. Pour qui demande moins de mouvement, la scène se tient tranquille : ni ressort, ni plongée, ni animation.
+  Sans 3D ou sans JavaScript, la liste et ses pages suffisent ; three.js (0.149.0, servi par le site) n'est téléchargé que s'il
+  sert.
 - **Rien ne vient d'ailleurs.** Les polices sont servies par mateosan.fr, et la politique de sécurité du contenu
   ([`deploiement/Caddyfile`](deploiement/Caddyfile)) n'accepte ni style ni script écrit dans une page.
 - **Du JavaScript vérifié** par TypeScript au plus strict (`tsc --checkJs --strict`, à partir des commentaires JSDoc), sans
@@ -61,7 +62,7 @@ autres.
 | `outils/pages/` | Ce qui écrit les pages de `site/` depuis le contenu (`npm run pages`). |
 | `site/` | Ce qui est servi : les pages, les feuilles de style, les scripts de l'établi (`site/js/`), les images, et ce qui vient d'ailleurs avec sa licence (`site/dependances/` : les polices, three.js). |
 | `tests/` | Les règles, le contenu, les pages. |
-| `banc/` | Le banc d'essai : chaque page sous Chromium et WebKit, sur ordinateur et téléphone, et l'accueil sans 3D, dans l'image Playwright ; il dessine aussi l'image de partage. |
+| `banc/` | Le banc d'essai, dans l'image Playwright : chaque page sous Chromium et WebKit, sur ordinateur et téléphone (`regard.js`) ; l'établi au clavier seul, au doigt, avec moins de mouvement, sans 3D et sans JavaScript (`etabli.js`). Il dessine aussi l'image de partage. |
 | `deploiement/` | Le conteneur, son serveur et le timer qui met `main` en ligne ([`LISEZMOI.md`](deploiement/LISEZMOI.md)). |
 
 ## Lancer en local
