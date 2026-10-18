@@ -19,19 +19,19 @@ const honear = {
       fichier: 'honear/piste.webp',
       description: 'Une piste en cours : la platine tourne, les pochettes des joueurs devant, le disque mystère à droite.',
       legende: 'une piste en cours, sur l\'écran de la tablée',
-      source: 'SNZMTO/honear@e61ec79 .github/captures/piste.webp',
+      source: 'SNZMTO/honear@670d6a7 .github/captures/piste.webp',
     },
     {
       fichier: 'honear/accueil.webp',
       description: "L'accueil de honear.fr : le bac des thèmes, la platine, l'ampli, et le bouton « On pose un disque ? ».",
       legende: "l'accueil, sur honear.fr",
-      source: 'SNZMTO/honear@e61ec79 .github/captures/accueil.webp',
+      source: 'SNZMTO/honear@670d6a7 .github/captures/accueil.webp',
     },
     {
       fichier: 'honear/revelation.webp',
       description: 'La révélation : le titre, « Les Démons de minuit », sur le disque, et les points gagnés sous la pochette de chaque joueur.',
       legende: 'la révélation et les points',
-      source: 'SNZMTO/honear@e61ec79 .github/captures/revelation.webp',
+      source: 'SNZMTO/honear@670d6a7 .github/captures/revelation.webp',
     },
   ],
   sections: [
