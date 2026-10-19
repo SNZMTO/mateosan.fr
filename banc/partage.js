@@ -1,6 +1,7 @@
 // L'image d'un lien partagé (site/images/partage.png, à la taille que dit contenu/site.js) : l'établi de l'accueil, dessiné
 // par Chromium, seul dans le cadre. À relancer quand la scène change, puis à commiter.
 
+import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import site from '../contenu/site.js';
 import { servir } from './serveur.js';
@@ -17,7 +18,7 @@ await page.goto(`${adresse}/`, { waitUntil: 'networkidle' });
 await page.addStyleTag({ content: '.scene { position: fixed; inset: 0; z-index: 1; height: auto; margin: 0; background: var(--fond-page); }' });
 await page.waitForSelector('.scene canvas');
 await page.waitForTimeout(POSE);
-await page.screenshot({ path: new URL(`../site${image}`, import.meta.url).pathname });
+await page.screenshot({ path: fileURLToPath(new URL(`../site${image}`, import.meta.url)) });
 await instance.close();
 fermer();
 console.log(`site${image} est à jour : commite-la.`);

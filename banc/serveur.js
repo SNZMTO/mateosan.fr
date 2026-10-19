@@ -3,9 +3,10 @@
 
 import { createServer } from 'node:http';
 import { readFileSync, statSync } from 'node:fs';
-import { extname, join, normalize } from 'node:path';
+import { extname, join, posix, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const RACINE = new URL('..', import.meta.url).pathname;
+const RACINE = fileURLToPath(new URL('..', import.meta.url));
 const SITE = join(RACINE, 'site');
 
 const CSP = readFileSync(join(RACINE, 'deploiement/Caddyfile'), 'utf8').match(/header Content-Security-Policy "([^"]+)"/)?.[1];
@@ -24,12 +25,24 @@ const TYPES = {
   '.pdf': 'application/pdf',
 };
 
-/** Le fichier qui répond à une adresse, comme try_files {path} {path}.html. @param {string} chemin */
+/**
+ * Le fichier qui répond à une adresse, comme try_files {path} {path}.html ; null si l'adresse ne se décode pas (un « % » sans
+ * ses deux chiffres hexadécimaux).
+ * @param {string} chemin
+ */
 function fichierDe(chemin) {
-  const demande = normalize(decodeURIComponent(chemin)).replace(/^(\.\.[/\\])+/, '');
+  let decode;
+  try {
+    decode = decodeURIComponent(chemin);
+  } catch {
+    return null;
+  }
+  // Un chemin d'adresse s'écrit avec des « / », même sous Windows, où path.normalize les changerait en « \ ».
+  const demande = posix.normalize(decode).replace(/^(\.\.[/\\])+/, '');
   for (const essai of [demande.endsWith('/') ? `${demande}index.html` : demande, `${demande}.html`]) {
     const complet = join(SITE, essai);
-    if (complet.startsWith(SITE) && statSync(complet, { throwIfNoEntry: false })?.isFile()) return complet;
+    // Rien hors de site/, pas même un dossier voisin qui commencerait par « site » : sous Windows, un « %5C » décodé sépare.
+    if (complet.startsWith(SITE + sep) && statSync(complet, { throwIfNoEntry: false })?.isFile()) return complet;
   }
   return undefined;
 }
@@ -39,11 +52,16 @@ export function servir(port) {
   const serveur = createServer((requete, reponse) => {
     const chemin = new URL(requete.url ?? '/', 'http://banc').pathname;
     const fichier = fichierDe(chemin);
+    const securite = { 'Content-Security-Policy': CSP, 'X-Content-Type-Options': 'nosniff' };
+    // Une adresse mal formée : une réponse 400, comme en ligne, plutôt qu'une exception qui arrêterait le serveur.
+    if (fichier === null) {
+      reponse.writeHead(400, securite).end();
+      return;
+    }
     const servi = fichier ?? join(SITE, '404.html');
     reponse.writeHead(fichier === undefined ? 404 : 200, {
       'Content-Type': TYPES[extname(servi)] ?? 'application/octet-stream',
-      'Content-Security-Policy': CSP,
-      'X-Content-Type-Options': 'nosniff',
+      ...securite,
     });
     reponse.end(readFileSync(servi));
   });
