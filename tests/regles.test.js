@@ -3,7 +3,7 @@
 
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { codeSansTextes, estBinaire, estUnePage, lire, palette, partiesEcritesDesGabarits, SOURCES } from './depot.js';
+import { codeSansTextes, estBinaire, estUnePage, importsDe, lire, palette, partiesEcritesDesGabarits, SOURCES } from './depot.js';
 
 const TEXTES = SOURCES.filter((chemin) => !estBinaire(chemin));
 const CODE = TEXTES.filter((chemin) => /\.(js|ts|css|sh|ya?ml)$/.test(chemin) || /(Caddyfile|Dockerfile|\.service|\.timer)$/.test(chemin));
@@ -91,7 +91,7 @@ test('les dépendances ne vont que dans un sens : contenu/, puis outils/ ; dans 
   };
   const fautes = MODULES.flatMap((chemin) => {
     const couche = chemin.split('/')[0] ?? '';
-    const importes = [...lire(chemin).matchAll(/\b(?:from|import)\s*\(?\s*'([^']+)'/g)].map((m) => m[1] ?? '');
+    const importes = importsDe(lire(chemin));
     return importes.filter((importe) => {
       const cible = new URL(importe, `file:///${chemin}`).pathname.slice(1);
       if (!(permis[couche] ?? /^$/).test(importe)) return true;

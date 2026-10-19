@@ -31,6 +31,9 @@ export const estUnePage = (/** @type {string} */ chemin) => /^site\/[^/]+\.html$
 /** Les images : tout sauf du texte, à part le SVG, qui se lit. */
 export const estBinaire = (/** @type {string} */ chemin) => /\.(png|webp|jpe?g|woff2|pdf|ico)$/.test(chemin);
 
+/** Les modules qu'importe un code : ce qui suit from ou import, entre apostrophes comme entre guillemets. @param {string} code */
+export const importsDe = (code) => [...code.matchAll(/\b(?:from|import)\s*\(?\s*(['"])([^'"]+)\1/g)].map((m) => m[2] ?? '');
+
 /** @returns {Map<string, string>} Chaque couleur de site/css/palette.css, sous son nom (fond-page, teinte-corail…). */
 export function palette() {
   const texte = lire('site/css/palette.css');
