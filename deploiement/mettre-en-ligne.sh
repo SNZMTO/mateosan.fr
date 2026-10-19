@@ -15,14 +15,19 @@ OUTILS=/usr/local/lib/mateosan
 DOMAINE=mateosan.fr
 [ "$(id -u)" = 0 ] || { echo "Lance-le avec sudo."; exit 1; }
 command -v docker >/dev/null || { echo "Docker n'est pas là : prépare d'abord le VPS (dépôt « vps », sudo sh preparer.sh)."; exit 1; }
-if [ -n "$(git -c safe.directory="$RACINE" -C "$RACINE" status --porcelain)" ]; then
+# Git lit la copie de travail sous le compte qui a lancé sudo, jamais en root : en root, une copie de travail pourrait faire
+# exécuter ce qu'elle veut (un core.fsmonitor, par exemple ; voir CVE-2022-24765). Ce compte a aussi la clé qui joint GitHub.
+UTILISATEUR="${SUDO_USER:-}"
+[ -n "$UTILISATEUR" ] && [ "$UTILISATEUR" != root ] || { echo "Lance-le avec sudo depuis ton compte, pas en root."; exit 1; }
+git_du_depot() { sudo -u "$UTILISATEUR" git -C "$RACINE" "$@"; }
+if [ -n "$(git_du_depot status --porcelain)" ]; then
   echo "Le dépôt a des changements qui ne sont pas commités : commite-les d'abord."
   exit 1
 fi
 # Commité ne suffit pas : ce commit doit être celui de main sur GitHub, que le timer met en ligne.
-MAIN="$(git -c safe.directory="$RACINE" -C "$RACINE" ls-remote origin refs/heads/main | cut -f1)"
+MAIN="$(git_du_depot ls-remote origin refs/heads/main | cut -f1)"
 [ -n "$MAIN" ] || { echo "GitHub ne dit pas où en est main (git ls-remote origin a échoué) : rien n'est posé."; exit 1; }
-if [ "$(git -c safe.directory="$RACINE" -C "$RACINE" rev-parse HEAD)" != "$MAIN" ]; then
+if [ "$(git_du_depot rev-parse HEAD)" != "$MAIN" ]; then
   echo "Ce dépôt n'est pas sur le main de GitHub ($MAIN) : pousse ce commit sur main d'abord, ou mets-toi à jour (git pull)."
   exit 1
 fi
