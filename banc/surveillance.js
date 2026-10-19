@@ -3,9 +3,10 @@
 // console n'est pas écoutée : pour la prendre, Playwright pose une feuille de style dans la page, que WebKit refuse au nom de
 // la CSP, sans que le site y soit pour rien.
 
+import { fileURLToPath } from 'node:url';
 import { chromium, devices, webkit } from 'playwright';
 
-export const SORTIE = new URL('sortie/', import.meta.url).pathname;
+export const SORTIE = fileURLToPath(new URL('sortie/', import.meta.url));
 /** La page introuvable se visite par une adresse qui ne mène à rien. */
 export const INTROUVABLE = '/cette-page-n-existe-pas';
 /** Le temps que l'établi se pose et que ses ressorts se calment, sous un rendu sans carte graphique. */
