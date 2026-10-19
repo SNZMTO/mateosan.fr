@@ -1,0 +1,6 @@
+# Les fins de ligne : LF dans le dépôt et dans chaque clone, Windows compris. Sans cela, un clone Windows en CRLF
+# (core.autocrlf) fait échouer tests/pages.test.js, qui compare site/*.html octet pour octet à ce qu'écrit npm run pages.
+* text=auto eol=lf
+
+# Ce qui vient d'ailleurs, tel quel (three.js, les polices) : GitHub ne le compte pas dans les langages du dépôt.
+site/dependances/** linguist-vendored
