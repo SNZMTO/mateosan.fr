@@ -69,14 +69,17 @@ autres.
 
 ## Lancer en local
 
-Il faut Node 24.
+Il faut Node 24, et rien d'autre.
 
 ```sh
 npm ci
 npm test                         # les types, puis les tests
 npm run pages                    # après un changement du contenu
-python3 -m http.server -d site   # le site sur http://127.0.0.1:8000 (sans la CSP ni les adresses sans « .html »)
+node banc/serveur.js             # le site sur http://127.0.0.1:8000, comme en ligne : la CSP, les adresses sans « .html »
 ```
+
+Un serveur de fichiers ordinaire (`python3 -m http.server`) ne suffit pas : les liens du site n'ont pas de « .html », et
+`/honear` y répondrait 404.
 
 ## Comment je l'ai construit
 

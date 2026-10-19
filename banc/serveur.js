@@ -1,5 +1,6 @@
 // Le serveur du banc : sert site/ comme le fait Caddy en ligne (deploiement/Caddyfile) — même politique de sécurité du contenu,
 // lue dans ce fichier, mêmes adresses sans « .html », même page introuvable — pour que le banc voie ce que verra un visiteur.
+// Lancé seul (node banc/serveur.js), il sert le site en local, sur http://127.0.0.1:8000.
 
 import { createServer } from 'node:http';
 import { readFileSync, statSync } from 'node:fs';
@@ -68,4 +69,9 @@ export function servir(port) {
   return new Promise((resoudre) => {
     serveur.listen(port, '127.0.0.1', () => resoudre({ adresse: `http://127.0.0.1:${port}`, fermer: () => serveur.close() }));
   });
+}
+
+if (import.meta.main) {
+  const { adresse } = await servir(8000);
+  console.log(`site/ servi comme en ligne sur ${adresse} ; Ctrl+C pour l'arrêter.`);
 }
