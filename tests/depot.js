@@ -58,17 +58,41 @@ export function contraste(a, b) {
 }
 
 /**
- * Le code d'un script, sans ses commentaires ni le texte de ses chaînes (remplacé par des espaces) : ce qui reste, ce sont les
- * noms et les nombres. Ce qu'on glisse dans un gabarit (${…}) reste, puisque c'est du code.
+ * Le code d'un script, sans ses commentaires ni le texte de ses chaînes et de ses expressions régulières (remplacé par des
+ * espaces) : ce qui reste, ce sont les noms et les nombres. Ce qu'on glisse dans un gabarit (${…}) reste, puisque c'est du code.
  * @param {string} code
  */
 export function codeSansTextes(code) {
   let reste = '';
   let i = 0;
+  /** Le dernier mot ou signe du code lu, hors blancs et commentaires : '' au début, le guillemet ou la barre d'un texte. */
+  let dernier = '';
   const lireChaine = (/** @type {string} */ guillemet) => {
     for (i++; i < code.length && code[i] !== guillemet; i++) if (code[i] === '\\') i++;
     i++;
     reste += ' ';
+    dernier = guillemet;
+  };
+  /**
+   * Une barre oblique ouvre une expression régulière là où le code attend un opérande : au début, après `return`, ou après
+   * l'un de ces signes, la flèche `=>` comprise. Après un nom, un nombre ou une parenthèse fermée, c'est une division.
+   */
+  const attendUnOperande = () => dernier === '' || dernier === 'return' || /^[(,=:[!&|?{};>]$/.test(dernier);
+  /** Lit une expression régulière, ses classes […], ses échappements et ses drapeaux ; false si la ligne finit avant sa barre. */
+  const lireRegex = () => {
+    let dansUneClasse = false;
+    for (let j = i + 1; j < code.length && code[j] !== '\n'; j++) {
+      if (code[j] === '\\') j++;
+      else if (code[j] === '[') dansUneClasse = true;
+      else if (code[j] === ']') dansUneClasse = false;
+      else if (code[j] === '/' && !dansUneClasse) {
+        i = j + 1;
+        while (/[a-z]/i.test(code[i] ?? '')) i++;
+        reste += ' ';
+        return true;
+      }
+    }
+    return false;
   };
   /** @param {boolean} dansUnGabarit Le code lu est dans un ${…}, qui finit à son accolade. */
   const lireCode = (dansUnGabarit) => {
@@ -79,9 +103,13 @@ export function codeSansTextes(code) {
       else if (c === "'" || c === '"') lireChaine(c);
       else if (code.startsWith('//', i)) i = code.indexOf('\n', i) === -1 ? code.length : code.indexOf('\n', i);
       else if (code.startsWith('/*', i)) i = code.indexOf('*/', i) + 2;
+      else if (c === '/' && attendUnOperande() && lireRegex()) dernier = '/';
       else {
         if (c === '{') profondeur++;
         if (c === '}') profondeur--;
+        // Un mot se lit lettre à lettre, jusqu'à `return`.
+        if (/[\w$]/.test(c)) dernier = /[\w$]/.test(code[i - 1] ?? '') ? dernier + c : c;
+        else if (!/\s/.test(c)) dernier = c;
         reste += c;
         i++;
       }
@@ -92,6 +120,7 @@ export function codeSansTextes(code) {
       if (code[i] === '\\') i += 2;
       else if (code.startsWith('${', i)) {
         i += 2;
+        dernier = '{';
         lireCode(true);
         i++;
         reste += ' ';
@@ -99,6 +128,7 @@ export function codeSansTextes(code) {
     }
     i++;
     reste += ' ';
+    dernier = '`';
   };
   lireCode(false);
   return reste;
