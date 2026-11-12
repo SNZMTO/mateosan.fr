@@ -59,14 +59,10 @@ export interface Personne {
   readonly surtitre: string;
   /** La phrase des trente secondes, sans ponctuation finale. */
   readonly accroche: string;
-  /** Quand l'alternance commence, avec sa préposition (« à partir de septembre 2027 ») ; absent, la phrase s'en passe. */
+  /** Quand je suis disponible, avec sa préposition (« à partir de septembre 2027 ») ; absent, la phrase s'en passe. */
   readonly debut?: string;
-  /** Sa durée, avec sa préposition (« pour deux ans »). */
-  readonly duree?: string;
   /** Où (« à Marseille ou à distance »). */
   readonly zone?: string;
-  /** Le rythme de l'alternance, qui clôt la phrase. */
-  readonly rythme: string;
   /** Une phrase qui dit ce que montrent les projets. */
   readonly preuve: string;
   readonly enAnglais: Section;
