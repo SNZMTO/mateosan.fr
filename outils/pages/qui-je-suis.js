@@ -5,11 +5,10 @@ import libelles from '../../contenu/interface.js';
 import { html } from './html.js';
 import { documentComplet, retour, titreDOnglet } from './gabarit.js';
 
-/** L'alternance cherchée, en une phrase : les précisions absentes du contenu (début, durée, lieu) n'y sont pas. */
+/** Le stage ou l'alternance cherchés, en une phrase : les précisions absentes du contenu (début, lieu) n'y sont pas. */
 export function phraseDesTrenteSecondes() {
-  const { accroche, debut, duree, zone, rythme } = personne;
-  const debutDePhrase = [accroche, debut, duree, zone].filter((morceau) => morceau !== undefined).join(', ');
-  return `${debutDePhrase} : ${rythme}.`;
+  const { accroche, debut, zone } = personne;
+  return `${[accroche, debut, zone].filter((morceau) => morceau !== undefined).join(', ')}.`;
 }
 
 /** Les moyens de me joindre : le CV, mon adresse, puis les liens. */
