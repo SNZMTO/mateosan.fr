@@ -38,7 +38,7 @@ const personne = {
         titre: 'Comment je travaille',
         paragraphes: [
           "À 42, tout se fait à la main : du C et du Python, sans assistant. Chaque projet est corrigé par d'autres étudiants, qui me font expliquer mon code.",
-          "Sur mes projets personnels, Claude Code écrit l'essentiel du code et des tests. Moi, je conçois, je découpe en couches, je fixe les règles que les tests vérifient, je tranche (souvent sur ses recommandations, et c'est noté dans les décisions) et j'essaie sur de vrais appareils. Chaque projet le dit, et ses commits sont co-signés.",
+          "Sur mes projets personnels, Claude Code écrit l'essentiel du code et des tests. Moi, je conçois, je découpe en couches, je fixe les règles que les tests vérifient, je tranche (souvent sur ses recommandations, et c'est noté dans les décisions) et j'essaie sur de vrais appareils. Chaque projet le dit.",
         ],
       },
       {

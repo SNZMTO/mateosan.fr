@@ -84,7 +84,7 @@ Un serveur de fichiers ordinaire (`python3 -m http.server`) ne suffit pas : les 
 ## Comment je l'ai construit
 
 Ce site est le mien de bout en bout : ce qu'il dit, son allure, ses règles et son hébergement. Claude Code en a écrit
-l'essentiel du code, et les commits co-signés le montrent. Moi, je décide de ce qu'il montre, je fixe les règles que les tests
+l'essentiel du code. Moi, je décide de ce qu'il montre, je fixe les règles que les tests
 vérifient, et je passe chaque page au banc d'essai avant de la mettre en ligne.
 
 <sub>© 2026 Mateo Sanchez, tous droits réservés : le code est public pour être lu, pas pour être réutilisé sans mon accord.

@@ -38,7 +38,7 @@ const honear = {
     {
       titre: "Comment je l'ai construit",
       paragraphes: [
-        "Honear est mon projet de bout en bout : l'idée, le meuble et son style, le découpage en couches, les règles du code, la sécurité et l'hébergement. Claude Code en a écrit l'essentiel du code et des tests, et les commits co-signés le montrent. Moi, je pose le cadre, je fixe les règles que les tests vérifient, et je tranche.",
+        "Honear est mon projet de bout en bout : l'idée, le meuble et son style, le découpage en couches, les règles du code, la sécurité et l'hébergement. Claude Code en a écrit l'essentiel du code et des tests. Moi, je pose le cadre, je fixe les règles que les tests vérifient, et je tranche.",
         "Le jeu est passé par sept étapes, chacune validée sur des planches avant la suivante, jusqu'à un prototype jouable contre un serveur simulé. Chaque règle d'architecture est un test, si bien que le code ne peut pas dériver sans que ça se voie. Et il s'essaie sur de vrais téléphones : plusieurs bugs ne se voyaient que sur iPhone.",
       ],
     },

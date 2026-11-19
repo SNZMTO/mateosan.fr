@@ -80,8 +80,8 @@ answer 404.
 
 ## How I built it
 
-This site is mine from end to end: what it says, how it looks, its rules and its hosting. Claude Code wrote most of the code,
-and the co-signed commits show it. I decide what the site shows, I set the rules that the tests check, and I run every page
+This site is mine from end to end: what it says, how it looks, its rules and its hosting. Claude Code wrote most of the code.
+I decide what the site shows, I set the rules that the tests check, and I run every page
 through the test bench before putting it online.
 
 <sub>© 2026 Mateo Sanchez, all rights reserved: the code is public to be read, not to be reused without my agreement. The
