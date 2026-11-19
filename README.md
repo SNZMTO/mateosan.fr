@@ -7,7 +7,7 @@ posé sur l'établi, chaque projet avec sa page.
 > where each project is an object, on top of plain HTML pages that work without it. The content lives in plain data files; the
 > pages are written from it before each commit and served as-is by a hardened container, with no build step on the server, no
 > third-party request and a strict Content Security Policy. Tests enforce the rules of the code itself. Code and docs are in
-> French.
+> French. Full English version: [README.en.md](README.en.md).
 
 ## Comment il est fait
 
