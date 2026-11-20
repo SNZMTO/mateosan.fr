@@ -5,7 +5,7 @@ import libelles from '../../contenu/interface.js';
 import { html } from './html.js';
 import { documentComplet, retour, titreDOnglet } from './gabarit.js';
 
-/** Le stage ou l'alternance cherchés, en une phrase : les précisions absentes du contenu (début, lieu) n'y sont pas. */
+/** Qui je suis, en une phrase : les précisions absentes du contenu (début, lieu) n'y sont pas. */
 export function phraseDesTrenteSecondes() {
   const { accroche, debut, zone } = personne;
   return `${[accroche, debut, zone].filter((morceau) => morceau !== undefined).join(', ')}.`;

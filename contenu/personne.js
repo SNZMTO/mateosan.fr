@@ -4,14 +4,14 @@
 const personne = {
   nom: 'Mateo Sanchez',
   surtitre: "L'Établi",
-  accroche: "Étudiant à 42 Marseille, je cherche un stage ou une alternance de développeur, côté full-stack ou IA, autour d'Aix-Marseille",
-  debut: "à partir d'avril 2027",
+  accroche: 'Étudiant à 42 Marseille, développeur full-stack et IA',
+  zone: 'basé à Aix-en-Provence',
   preuve:
     "Mes projets sont tenus par leurs tests, et Honear, mon blind test multijoueur, se joue en ligne sur un serveur que j'administre.",
   enAnglais: {
     titre: 'In English',
     paragraphes: [
-      "I'm a student at 42 Marseille, looking for an internship or an apprenticeship as a full-stack or AI developer around Aix-Marseille, starting in April 2027 (an apprenticeship lasts two years: two weeks at the company, one week at school). My projects are held together by their tests, and Honear, my multiplayer music quiz, runs online on a server I administer. This site and the projects are in French; each personal project's page links to its code (42's school projects stay private, and I'm happy to show them in an interview).",
+      "I'm a student at 42 Marseille and a full-stack and AI developer, based in Aix-en-Provence. My projects are held together by their tests, and Honear, my multiplayer music quiz, runs online on a server I administer. This site and the projects are in French; each personal project's page links to its code (42's school projects stay private, and I'm happy to show them in an interview).",
     ],
   },
   teinte: 'noyer',
@@ -23,7 +23,6 @@ const personne = {
       {
         titre: 'Ce que je cherche',
         paragraphes: [
-          "Un stage ou une alternance, à partir d'avril 2027. L'alternance dure deux ans : deux semaines en entreprise, une semaine à l'école.",
           "Plutôt une petite équipe qu'un grand groupe : une équipe où ce que je livre sert dès les premières semaines, et avec qui j'aurais envie de continuer ensuite.",
         ],
       },
